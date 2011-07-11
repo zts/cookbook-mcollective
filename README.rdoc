@@ -1,0 +1,32 @@
+= DESCRIPTION:
+
+Installs the Marionette Collective
+
+= PLATFORMS:
+
+* Ubuntu - tested
+* CentOS, RHEL - untested, might work (if you try, let me know)
+
+= REQUIREMENTS:
+
+A STOMP server.
+
+Cookbooks
+---------
+* apt (leverages apt_repository LWRP)
+* yum (leverages yum_repository LWRP)
+
+The `apt_repository` and `yum_repository` LWRPs are used from these
+cookbooks to create the proper repository entries so that mcollective can be downloaded and installed.
+
+= ATTRIBUTES:
+
+* mcollective['psk'] - your pre-shared key
+* mcollective['stomp']['hostname'] 
+* mcollective['stomp']['port']
+* mcollective['stomp']['username']
+* mcollective['stomp']['password']
+
+
+= USAGE:
+
