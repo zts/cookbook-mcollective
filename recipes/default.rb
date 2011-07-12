@@ -58,3 +58,9 @@ template "/etc/mcollective/server.cfg" do
   mode 0600
   notifies :restart, 'service[mcollective]'
 end
+
+cookbook_file "/usr/share/mcollective/plugins/mcollective/facts/opscodeohai_facts.rb" do
+  source "opscodeohai_facts.rb"
+  mode 0644
+  notifies :restart, 'service[mcollective]'
+end

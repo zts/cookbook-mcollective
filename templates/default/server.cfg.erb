@@ -17,5 +17,5 @@ plugin.stomp.user = <%= @node['mcollective']['stomp']['username'] %>
 plugin.stomp.password = <%= @node['mcollective']['stomp']['password'] %>
 
 # Facts
-factsource = yaml
-plugin.yaml = /etc/mcollective/facts.yaml
+factsource = opscodeohai
+fact_cache_time = 300
