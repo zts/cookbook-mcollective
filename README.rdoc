@@ -5,7 +5,7 @@ Installs the Marionette Collective
 = PLATFORMS:
 
 * Ubuntu - tested
-* CentOS, RHEL - untested, might work (if you try, let me know)
+* CentOS, RHEL - should work with minor changes (if you try, let me know)
 
 = REQUIREMENTS:
 
@@ -13,11 +13,12 @@ A STOMP server.
 
 Cookbooks
 ---------
-* apt (leverages apt_repository LWRP)
-* yum (leverages yum_repository LWRP)
+* apt
+* chef_handler
 
-The `apt_repository` and `yum_repository` LWRPs are used from these
-cookbooks to create the proper repository entries so that mcollective can be downloaded and installed.
+The `apt_repository` LWRP is used to create an entry for the puppetlabs repository.
+
+The `chef_handler` LWRP is used to install a report handler (::server only)
 
 = ATTRIBUTES:
 
@@ -29,4 +30,14 @@ cookbooks to create the proper repository entries so that mcollective can be dow
 
 
 = USAGE:
+
+Add recipe[mcollective] to your run_list to install the server and client tools.
+
+By default, configuration will expect a STOMP server on localhost configured per 
+http://docs.puppetlabs.com/mcollective/reference/basic/gettingstarted.html#configuring-stomp
+
+If you already have a STOMP server available, override attributes to point to it.
+
+* recipe[mcollective::server] will install the server components only.
+* recipe[mcollective::client] will install the client components only.
 
