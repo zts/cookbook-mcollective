@@ -6,7 +6,7 @@
 #
 # Copyright 2011, Zachary Stevens
 #
-# All rights reserved - Do Not Redistribute
+# Licensed under the Apache License, Version 2.0 (the "License");
 #
 
 package "rubygems" do
