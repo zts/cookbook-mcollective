@@ -13,12 +13,8 @@ package "rubygems" do
   action :install
 end
 
-package "libstomp-ruby" do
-  action :install
-end
-
 case node['platform']
-when "ubuntu"
+when "ubuntu","debian"
   apt_repository "puppetlabs" do
     uri "http://apt.puppetlabs.com/ubuntu"
     components ["lucid","main"]
@@ -26,16 +22,25 @@ when "ubuntu"
     keyserver "pgp.mit.edu"
     action :add
   end
-when "centos", "redhat"
+
+  package "libstomp-ruby" do
+    action :install
+  end
+when "centos","redhat","fedora"
   yum_key "RPM-GPG-KEY-puppetlabs" do
     url "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs"
     action :add
   end
   
   yum_repository "puppetlabs" do
-    name "Puppet Labs Packages"
-    baseurl "http://yum.puppetlabs.com/base/"
+    name "puppetlabs"
+    description "Puppet Labs Packages"
+    url "http://yum.puppetlabs.com/base/"
     action :add
+  end
+
+  package "rubygem-stomp" do
+    action :install
   end
 end
 

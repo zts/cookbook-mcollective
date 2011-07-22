@@ -24,11 +24,13 @@ template "/etc/mcollective/server.cfg" do
   notifies :restart, 'service[mcollective]'
 end
 
-cookbook_file "/usr/share/mcollective/plugins/mcollective/facts/opscodeohai_facts.rb" do
+cookbook_file "#{node['mcollective']['plugin_path']}/facts/opscodeohai_facts.rb" do
   source "opscodeohai_facts.rb"
   mode 0644
   notifies :restart, 'service[mcollective]'
 end
+
+include_recipe "chef_handler"
 
 cookbook_file "#{node['chef_handler']['handler_path']}/mcollective_classlist.rb" do
   source "mcollective_classlist.rb"

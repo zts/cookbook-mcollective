@@ -4,8 +4,11 @@ Installs the Marionette Collective
 
 = PLATFORMS:
 
-* Ubuntu - tested
-* CentOS, RHEL - should work with minor changes (if you try, let me know)
+Tested as working:
+ * Ubuntu (10.04)
+ * Centos (5.5)
+
+Likely to work without modification on Debian, RHEL, Fedora (if you try, please let me know).
 
 = REQUIREMENTS:
 
