@@ -29,3 +29,14 @@ cookbook_file "/usr/share/mcollective/plugins/mcollective/facts/opscodeohai_fact
   mode 0644
   notifies :restart, 'service[mcollective]'
 end
+
+cookbook_file "#{node['chef_handler']['handler_path']}/mcollective_classlist.rb" do
+  source "mcollective_classlist.rb"
+  mode 0644
+end
+
+chef_handler "MCollective::ClassList" do
+  source "#{node['chef_handler']['handler_path']}/mcollective_classlist.rb"
+  supports :report => true, :exception => false
+  action :enable
+end
