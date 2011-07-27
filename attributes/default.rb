@@ -29,7 +29,7 @@ default['mcollective']['stomp']['password'] = "marionette"
 # Plugin location
 case platform
 when "debian","ubuntu"
-  default['mcollective']['plugin_path'] = "/usr/share/mcollective/plugins/mcollective"
+  default['mcollective']['plugin_path'] = "/usr/share/mcollective/plugins"
 when "redhat","centos","fedora"
-  default['mcollective']['plugin_path'] = "/usr/libexec/mcollective/mcollective"
+  default['mcollective']['plugin_path'] = "/usr/libexec/mcollective"
 end

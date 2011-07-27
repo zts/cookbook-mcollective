@@ -24,7 +24,7 @@ template "/etc/mcollective/server.cfg" do
   notifies :restart, 'service[mcollective]'
 end
 
-cookbook_file "#{node['mcollective']['plugin_path']}/facts/opscodeohai_facts.rb" do
+cookbook_file "#{node['mcollective']['plugin_path']}/mcollective/facts/opscodeohai_facts.rb" do
   source "opscodeohai_facts.rb"
   mode 0644
   notifies :restart, 'service[mcollective]'

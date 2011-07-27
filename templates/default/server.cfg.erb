@@ -1,7 +1,7 @@
 topicprefix = /topic/
 main_collective = mcollective
 collectives = mcollective
-libdir = /usr/share/mcollective/plugins
+libdir = <%= @node['mcollective']['plugin_path'] %>
 logfile = /var/log/mcollective.log
 loglevel = info
 daemonize = 1
