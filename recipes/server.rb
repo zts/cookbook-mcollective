@@ -33,6 +33,17 @@ template "/etc/mcollective/server.cfg" do
   notifies :restart, 'service[mcollective]'
 end
 
+remote_directory "#{node['mcollective']['plugin_path']}/mcollective" do
+  source 'plugins'
+  owner 'root'
+  group 'root'
+  files_owner 'root'
+  files_group 'root'
+  mode "0755"
+  recursive true
+  notifies :restart, 'service[mcollective]'
+end
+
 cookbook_file "#{node['mcollective']['plugin_path']}/mcollective/facts/opscodeohai_facts.rb" do
   source "opscodeohai_facts.rb"
   mode 0644
@@ -51,3 +62,4 @@ chef_handler "MCollective::ClassList" do
   supports :report => true, :exception => false
   action :enable
 end
+
