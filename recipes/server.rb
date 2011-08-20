@@ -27,13 +27,17 @@ service "mcollective" do
   action [:enable, :start]
 end
 
+# The libdir paths in the MC configuration need to omit the
+# trailing "/mcollective"
+site_libdir = node['mcollective']['site_plugins'].sub(/\/mcollective$/, '')
 template "/etc/mcollective/server.cfg" do
   source "server.cfg.erb"
   mode 0600
   notifies :restart, 'service[mcollective]'
+  variables :site_plugins => site_libdir
 end
 
-remote_directory "#{node['mcollective']['plugin_path']}/mcollective" do
+remote_directory "#{node['mcollective']['site_plugins']}" do
   source 'plugins'
   owner 'root'
   group 'root'
@@ -44,7 +48,7 @@ remote_directory "#{node['mcollective']['plugin_path']}/mcollective" do
   notifies :restart, 'service[mcollective]'
 end
 
-cookbook_file "#{node['mcollective']['plugin_path']}/mcollective/facts/opscodeohai_facts.rb" do
+cookbook_file "#{node['mcollective']['site_plugins']}/facts/opscodeohai_facts.rb" do
   source "opscodeohai_facts.rb"
   mode 0644
   notifies :restart, 'service[mcollective]'

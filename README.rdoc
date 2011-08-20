@@ -30,6 +30,7 @@ The `chef_handler` LWRP is used to install a report handler (::server only)
 * mcollective['stomp']['port']
 * mcollective['stomp']['username']
 * mcollective['stomp']['password']
+* mcollective['site_plugins'] - additional plugins
 
 = USAGE:
 

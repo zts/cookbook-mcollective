@@ -26,10 +26,12 @@ default['mcollective']['stomp']['port'] = "6163"
 default['mcollective']['stomp']['username'] = "mcollective"
 default['mcollective']['stomp']['password'] = "marionette"
 
+default['mcollective']['site_plugins'] = "/etc/mcollective/site_plugins/mcollective"
+
 # Plugin location
 case platform
 when "debian","ubuntu"
-  default['mcollective']['plugin_path'] = "/usr/share/mcollective/plugins"
+  default['mcollective']['libdir'] = "/usr/share/mcollective/plugins"
 when "redhat","centos","fedora"
-  default['mcollective']['plugin_path'] = "/usr/libexec/mcollective"
+  default['mcollective']['libdir'] = "/usr/libexec/mcollective"
 end
