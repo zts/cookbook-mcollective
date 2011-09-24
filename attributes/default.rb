@@ -28,7 +28,17 @@ default['mcollective']['stomp']['password'] = "marionette"
 
 default['mcollective']['site_plugins'] = "/etc/mcollective/site_plugins/mcollective"
 
-# Ohai keys to include in mcollective's fact list
+# Fact Source
+# The default option configures MCollective to read a YAML file
+# produced by a Chef handler, containing a configurable list of
+# facts.  This gives the best MCollective performance, at the cost of
+# less fresh data (updated only as frequently as you run Chef).
+#
+# Set this to 'ohai' to instead use the opscodeohai MCollective Fact
+# plugin.
+default['mcollective']['factsource'] = 'yaml'
+
+# Ohai keys to include in the YAML fact list.
 default['mcollective']['fact_whitelist'] = [
                                             'fqdn',
                                             'hostname',

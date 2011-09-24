@@ -17,8 +17,13 @@ plugin.stomp.user = <%= @node['mcollective']['stomp']['username'] %>
 plugin.stomp.password = <%= @node['mcollective']['stomp']['password'] %>
 
 # Facts
+<% if @node['mcollective']['factsource'] == 'ohai' %>
+factsource = opscodeohai
+fact_cache_time = 300
+<% else %>
 factsource = yaml
 plugin.yaml = /etc/mcollective/facts.yaml
+<% end %>
 
 # Classes
 classesfile = /var/tmp/chefnode.txt
