@@ -22,7 +22,12 @@ package "mcollective-client" do
   action :install
 end
 
+# The libdir paths in the MC configuration need to omit the
+# trailing "/mcollective"
+site_libdir = node['mcollective']['site_plugins'].sub(/\/mcollective$/, '')
+
 template "/etc/mcollective/client.cfg" do
   source "client.cfg.erb"
   mode 0644
+  variables :site_plugins => site_libdir
 end

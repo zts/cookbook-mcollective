@@ -1,7 +1,7 @@
 topicprefix = /topic/
 main_collective = mcollective
 collectives = mcollective
-libdir = <%= @node['mcollective']['libdir'] %>
+libdir = <%= @site_plugins %>:<%= @node['mcollective']['libdir'] %>
 logfile = /dev/null
 loglevel = info
 
