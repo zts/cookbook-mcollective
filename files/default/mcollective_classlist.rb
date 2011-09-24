@@ -11,7 +11,9 @@ module MCollective
       state = File.open("/var/tmp/chefnode.txt", "w")
 
       run_status.node.run_state[:seen_recipes].keys.each do |recipe|
-        state.puts("recipe.#{recipe}")
+        # Normalise name of default recipes
+        name = recipe.match('::') ? recipe : "#{recipe}::default"
+        state.puts("recipe.#{name}")
       end
       run_status.node.run_list.roles.each do |role|
         state.puts("role.#{role}")
