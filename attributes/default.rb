@@ -28,7 +28,29 @@ default['mcollective']['stomp']['password'] = "marionette"
 
 default['mcollective']['site_plugins'] = "/etc/mcollective/site_plugins/mcollective"
 
-# Plugin location
+# Ohai keys to include in mcollective's fact list
+default['mcollective']['fact_whitelist'] = [
+                                            'fqdn',
+                                            'hostname',
+                                            'domain',
+                                            'ipaddress',
+                                            'macaddress',
+                                            'os',
+                                            'os_version',
+                                            'platform',
+                                            'platform_version',
+                                            'ohai_time',
+                                            'uptime',
+                                            'uptime_seconds',
+                                            'chef_packages',
+                                            'keys',
+                                            'instmaint',
+                                            'virtualization',
+                                            'cpu',
+                                            'memory'
+                                           ]
+
+# MCollective plugin location (created by the packages)
 case platform
 when "debian","ubuntu"
   default['mcollective']['libdir'] = "/usr/share/mcollective/plugins"
