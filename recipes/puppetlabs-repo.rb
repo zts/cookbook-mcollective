@@ -1,8 +1,8 @@
 #
 # Cookbook Name:: mcollective
-# Recipe:: common
+# Recipe:: puppetlabs-repo
 #
-# Resources required by both client and server.
+# Installs the apt/yum repo for Puppetlabs packages.
 #
 # Copyright 2011, Zachary Stevens
 #
@@ -18,20 +18,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-package "rubygems" do
-  action :install
-end
-
-package "rubygem-stomp" do
-  case node['platform']
-  when "ubuntu","debian"
-    package_name "libstomp-ruby"
-  when "centos","redhat","fedora"
-    package_name "rubygem-stomp"
+case node['platform']
+when "ubuntu","debian"
+  apt_repository "puppetlabs" do
+    uri "http://apt.puppetlabs.com/ubuntu"
+    components ["lucid","main"]
+    key "4BD6EC30"
+    keyserver "pgp.mit.edu"
+    action :add
   end
-  action :install
-end
 
-package "mcollective-common" do
-  action :install
+when "centos","redhat","fedora"
+  yum_key "RPM-GPG-KEY-puppetlabs" do
+    url "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs"
+    action :add
+  end
+  
+  yum_repository "puppetlabs" do
+    name "puppetlabs"
+    description "Puppet Labs Packages"
+    url "http://yum.puppetlabs.com/base/"
+    action :add
+  end
 end
