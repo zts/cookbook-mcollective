@@ -6,9 +6,10 @@ Installs the Marionette Collective
 
 Tested as working:
  * Ubuntu (10.04)
- * Centos (5.5)
+ * Centos (5.5, 5.6, 6.0)
 
 Likely to work without modification on Debian, RHEL, Fedora (if you try, please let me know).
+
 
 = REQUIREMENTS:
 
@@ -17,32 +18,51 @@ A STOMP server.
 Cookbooks
 ---------
 * apt
+* yum
 * chef_handler
 
-The `apt_repository` LWRP is used to create an entry for the puppetlabs repository.
-
+The `apt_repository` and `yum_repository` LWRPs are optionally used to create entries for the puppetlabs repository.
 The `chef_handler` LWRP is used to install a report handler (::server only)
+
 
 = ATTRIBUTES:
 
-* mcollective['psk'] - your pre-shared key
+Security:
+* mcollective['psk'] - the pre-shared key for encrypting messages
+
+STOMP service connection details:
 * mcollective['stomp']['hostname'] 
 * mcollective['stomp']['port']
 * mcollective['stomp']['username']
 * mcollective['stomp']['password']
-* mcollective['site_plugins'] - additional plugins
+
+Site Plugin path:
+* mcollective['site_plugins'] - installation location for extra plugins (this is added to the MCollective plugin path)
+
+Facts:
+* mcollective['factsource'] - sets where MCollective gets facts from
+* mcollective['fact_whitelist'] - Ohai fact groups to include when using the 'yaml' factsource.
+
 
 = USAGE:
 
 Add recipe[mcollective] to your run_list to install the server and client tools.
 
-By default, configuration will expect a STOMP server on localhost configured per 
-http://docs.puppetlabs.com/mcollective/reference/basic/gettingstarted.html#configuring-stomp
+Set the node's mcollective['stomp'] attributes to point to your server (or use role/environment attributes).  The default expects a STOMP server on localhost configured as per http://docs.puppetlabs.com/mcollective/reference/basic/gettingstarted.html#configuring-stomp
 
-If you already have a STOMP server available, override attributes to point to it.
+MCollective's "class list" will be populated with the roles and recipes present in the expanded run list of the last Chef run.
 
-* recipe[mcollective::server] will install the server components only.
-* recipe[mcollective::client] will install the client components only.
+You can customise installation by choosing from these recipes instead of the default:
+* recipe[mcollective::server] installs the server components.
+* recipe[mcollective::client] installs the client components.
+* recipe[mcollective::puppetlabs-repo] installs the Puppetlabs apt/yum repo.
+
+
+= TODO:
+
+* Support for security configurations other than PSK
+* Configurable fact- and class-file names.
+* Tests
 
 = LICENSE:
 
