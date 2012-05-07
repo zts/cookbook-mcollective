@@ -28,16 +28,29 @@ when "ubuntu","debian"
     action :add
   end
 
-when "centos","redhat","fedora"
+when "centos","redhat"
   yum_key "RPM-GPG-KEY-puppetlabs" do
     url "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs"
     action :add
   end
-  
+
   yum_repository "puppetlabs" do
     name "puppetlabs"
     description "Puppet Labs Packages"
-    url "http://yum.puppetlabs.com/base/"
+    url "http://yum.puppetlabs.com/el/$releasever/products/$basearch"
+    action :add
+  end
+when "fedora"
+  yum_key "RPM-GPG-KEY-puppetlabs" do
+    url "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs"
+    action :add
+  end
+
+  yum_repository "puppetlabs" do
+    name "puppetlabs"
+    description "Puppet Labs Packages"
+    url "http://yum.puppetlabs.com/fedora/f$releasever/products/$basearch"
+    url "http://yum.puppetlabs.com/fedora/"
     action :add
   end
 end
