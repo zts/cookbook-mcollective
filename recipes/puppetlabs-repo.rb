@@ -21,8 +21,8 @@
 case node['platform']
 when "ubuntu","debian"
   apt_repository "puppetlabs" do
-    uri "http://apt.puppetlabs.com/ubuntu"
-    components ["lucid","main"]
+    uri "http://apt.puppetlabs.com/"
+    components [ node['lsb']['codename'], "main" ]
     key "4BD6EC30"
     keyserver "pgp.mit.edu"
     action :add
