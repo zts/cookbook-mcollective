@@ -20,6 +20,7 @@ include_recipe "mcollective::common"
 
 package "mcollective" do
   action :install
+  version node['mcollective']['package']['version']
 end
 
 service "mcollective" do

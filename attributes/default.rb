@@ -17,6 +17,9 @@
 # limitations under the License.
 #
 
+# version of mcollective to install
+default['mcollective']['package']['version'] = nil
+
 # pre-shared key
 default['mcollective']['psk'] = "unset"
 
