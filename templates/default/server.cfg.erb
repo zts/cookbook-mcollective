@@ -1,6 +1,7 @@
 topicprefix = /topic/
 main_collective = mcollective
 collectives = mcollective
+identity = <%= @node['fqdn'] %>
 libdir = <%= @site_plugins %>:<%= @node['mcollective']['libdir'] %>
 logfile = /var/log/mcollective.log
 loglevel = info
@@ -27,4 +28,3 @@ plugin.yaml = /etc/mcollective/facts.yaml
 
 # Classes
 classesfile = /var/tmp/chefnode.txt
-
