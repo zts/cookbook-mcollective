@@ -20,6 +20,7 @@ include_recipe "mcollective::common"
 
 package "mcollective-client" do
   action :install
+  version node['mcollective']['package']['version']
 end
 
 # The libdir paths in the MC configuration need to omit the

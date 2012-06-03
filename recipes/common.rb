@@ -34,4 +34,5 @@ end
 
 package "mcollective-common" do
   action :install
+  version node['mcollective']['package']['version']
 end
