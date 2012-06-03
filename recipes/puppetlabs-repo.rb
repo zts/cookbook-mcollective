@@ -40,6 +40,13 @@ when "centos","redhat"
     url "http://yum.puppetlabs.com/el/$releasever/products/$basearch"
     action :add
   end
+
+  yum_repository "puppetlabs-deps" do
+    name "puppetlabs-deps"
+    description "Dependencies for Puppet Labs Software"
+    url "http://yum.puppetlabs.com/el/$releasever/dependencies/$basearch"
+    action :add
+  end
 when "fedora"
   yum_key "RPM-GPG-KEY-puppetlabs" do
     url "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs"
@@ -51,6 +58,12 @@ when "fedora"
     description "Puppet Labs Packages"
     url "http://yum.puppetlabs.com/fedora/f$releasever/products/$basearch"
     url "http://yum.puppetlabs.com/fedora/"
+    action :add
+  end
+  yum_repository "puppetlabs-deps" do
+    name "puppetlabs-deps"
+    description "Dependencies for Puppet Labs Software"
+    url "http://yum.puppetlabs.com/fedora/$releasever/dependencies/$basearch"
     action :add
   end
 end
