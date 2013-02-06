@@ -1,7 +1,9 @@
 ## v0.10.0
 
-* FEATURE - include MCollective agent for controlling the chef-client daemon
-* FIX - install packages appropriate to the Debian or Ubuntu release
+* add an attribute to specify which version to install (thanks to jschneiderhan)
+* FEATURE - include an MCollective agent for controlling the chef-client daemon
+* FIX - install packages appropriate to the specific Debian or Ubuntu release
+* FIX - add the Puppet Labs "dependencies" yum repo (for rubygems-stomp)
 
 
 ## v0.9.1:

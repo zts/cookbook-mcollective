@@ -27,11 +27,14 @@ The `chef_handler` LWRP is used to install a report handler (::server only)
 
 = ATTRIBUTES:
 
+Version:
+* mcollective['package']['version'] - the version of MCollective to install.
+
 Security:
 * mcollective['psk'] - the pre-shared key for encrypting messages
 
 STOMP service connection details:
-* mcollective['stomp']['hostname'] 
+* mcollective['stomp']['hostname']
 * mcollective['stomp']['port']
 * mcollective['stomp']['username']
 * mcollective['stomp']['password']
