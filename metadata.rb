@@ -3,7 +3,7 @@ maintainer_email "zts@cryptocracy.com"
 license          "Apache v2.0"
 description      "Installs/Configures mcollective"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version          "0.10.0"
+version          "0.10.1"
 
 %w{ debian ubuntu redhat centos fedora scientific}.each do |os|
   supports os

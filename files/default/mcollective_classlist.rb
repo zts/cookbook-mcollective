@@ -8,9 +8,16 @@ module MCollective
 
     private
     def generate_classlist
+      if Chef::VERSION >= "11.0.0"
+      then
+        seen_recipes = run_context.loaded_recipes
+      else
+        seen_recipes = run_status.node.run_state[:seen_recipes].keys
+      end
+
       state = File.open("/var/tmp/chefnode.txt", "w")
 
-      run_status.node.run_state[:seen_recipes].keys.each do |recipe|
+      seen_recipes.each do |recipe|
         # Normalise name of default recipes
         name = recipe.match('::') ? recipe : "#{recipe}::default"
         state.puts("recipe.#{name}")

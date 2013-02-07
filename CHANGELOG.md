@@ -1,3 +1,7 @@
+## v0.10.1
+
+* Now works on Chef 11.
+
 ## v0.10.0
 
 * add an attribute to specify which version to install (thanks to jschneiderhan)
