@@ -6,8 +6,10 @@ logfile = /dev/null
 loglevel = info
 
 # Plugins
-securityprovider = psk
+securityprovider = <%= @node['mcollective']['securityprovider'] %>
+<%- if @node['mcollective']['securityprovider'] == "psk" %>
 plugin.psk =  <%= @node['mcollective']['psk'] %>
+<%- end %>
 
 connector = stomp
 plugin.stomp.host = <%= @node['mcollective']['stomp']['hostname'] %>

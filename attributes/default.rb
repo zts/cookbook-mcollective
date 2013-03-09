@@ -20,6 +20,9 @@
 # version of mcollective to install
 default['mcollective']['package']['version'] = nil
 
+# Security provider to use
+default['mcollective']['securityprovider'] = "psk"
+
 # pre-shared key
 default['mcollective']['psk'] = "unset"
 

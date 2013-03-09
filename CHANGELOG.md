@@ -1,3 +1,8 @@
+## v0.10.2
+
+* security provider can be set from an attribute (default is
+  unchanged)
+  
 ## v0.10.1
 
 * Now works on Chef 11.
