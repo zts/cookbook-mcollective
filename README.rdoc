@@ -5,7 +5,7 @@ Installs the Marionette Collective
 = PLATFORMS:
 
 Tested as working:
- * Ubuntu (10.04)
+ * Ubuntu (10.04, 12.04)
  * Centos (5.5, 5.6, 6.0)
 
 Likely to work without modification on Debian, RHEL, Fedora (if you try, please let me know).
@@ -31,7 +31,8 @@ Version:
 * mcollective['package']['version'] - the version of MCollective to install.
 
 Security:
-* mcollective['psk'] - the pre-shared key for encrypting messages
+* mcollective['securityprovider'] - the security plugin to use (default: "psk")
+* mcollective['psk'] - the key for the "psk" security provider.
 
 STOMP service connection details:
 * mcollective['stomp']['hostname']
@@ -63,7 +64,6 @@ You can customise installation by choosing from these recipes instead of the def
 
 = TODO:
 
-* Support for security configurations other than PSK
 * Configurable fact- and class-file names.
 * Tests
 
