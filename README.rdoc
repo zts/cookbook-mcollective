@@ -34,7 +34,10 @@ Security:
 * mcollective['securityprovider'] - the security plugin to use (default: "psk")
 * mcollective['psk'] - the key for the "psk" security provider.
 
-STOMP service connection details:
+Message Broker connection settings:
+* mcollective['connector'] - which connection plugin to use (default: "stomp")
+
+STOMP service connection details (used by "stomp" and "activemq" plugins):
 * mcollective['stomp']['hostname']
 * mcollective['stomp']['port']
 * mcollective['stomp']['username']

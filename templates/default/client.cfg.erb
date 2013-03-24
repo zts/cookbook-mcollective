@@ -11,7 +11,7 @@ securityprovider = <%= @node['mcollective']['securityprovider'] %>
 plugin.psk =  <%= @node['mcollective']['psk'] %>
 <%- end %>
 
-connector = stomp
+connector = <%= @node['mcollective']['connector'] %>
 
 # Facts
 <% if @node['mcollective']['factsource'] == 'ohai' %>

@@ -27,6 +27,7 @@ default['mcollective']['securityprovider'] = "psk"
 default['mcollective']['psk'] = "unset"
 
 # STOMP server details
+default['mcollective']['connector'] = "stomp"
 default['mcollective']['stomp']['hostname'] = "localhost"
 default['mcollective']['stomp']['port'] = "6163"
 default['mcollective']['stomp']['username'] = "mcollective"

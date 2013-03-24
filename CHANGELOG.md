@@ -2,7 +2,7 @@
 
 * Create /etc/mcollective/plugin.d
 * Move Stomp plugin configuration to plugin.d
-
+* Parameterise connector type (default remains 'stomp')
 
 ## v0.10.2
 
