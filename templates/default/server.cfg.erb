@@ -1,6 +1,7 @@
 topicprefix = /topic/
 main_collective = mcollective
 collectives = mcollective
+direct_addressing = y
 identity = <%= @node['fqdn'] %>
 libdir = <%= @site_plugins %>:<%= @node['mcollective']['libdir'] %>
 logfile = /var/log/mcollective.log
