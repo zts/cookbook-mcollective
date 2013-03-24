@@ -36,3 +36,17 @@ package "mcollective-common" do
   action :install
   version node['mcollective']['package']['version']
 end
+
+directory "/etc/mcollective/plugin.d" do
+  owner "root"
+  group "root"
+  mode 00755
+  action :create
+end
+
+template "/etc/mcollective/plugin.d/stomp.cfg" do
+  source "plugin-stomp.cfg.erb"
+  mode 0600
+  notifies :restart, 'service[mcollective]'
+  variables :stomp => node['mcollective']['stomp']
+end

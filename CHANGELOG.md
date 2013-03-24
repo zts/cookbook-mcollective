@@ -1,3 +1,9 @@
+## v0.11.0
+
+* Create /etc/mcollective/plugin.d
+* Move Stomp plugin configuration to plugin.d
+
+
 ## v0.10.2
 
 * security provider can be set from an attribute (default is

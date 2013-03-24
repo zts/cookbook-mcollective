@@ -14,10 +14,6 @@ plugin.psk =  <%= @node['mcollective']['psk'] %>
 <%- end %>
 
 connector = stomp
-plugin.stomp.host = <%= @node['mcollective']['stomp']['hostname'] %>
-plugin.stomp.port = <%= @node['mcollective']['stomp']['port'] %>
-plugin.stomp.user = <%= @node['mcollective']['stomp']['username'] %>
-plugin.stomp.password = <%= @node['mcollective']['stomp']['password'] %>
 
 # Facts
 <% if @node['mcollective']['factsource'] == 'ohai' %>
