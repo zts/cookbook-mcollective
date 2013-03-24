@@ -1,0 +1,14 @@
+pool.size = 1
+pool.1.host = <%= @stomp['hostname'] %>
+pool.1.port = <%= @stomp['port'] %>
+pool.1.user = <%= @stomp['username'] %>
+pool.1.password = <%= @stomp['password'] %>
+
+initial_reconnect_delay = 0.01
+max_reconnect_delay = 30.0
+use_exponential_back_off = true
+back_off_multiplier = 2
+max_reconnect_attempts = 0
+randomize = false
+timeout = -1
+priority = 4
