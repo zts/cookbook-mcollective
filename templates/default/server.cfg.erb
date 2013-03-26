@@ -4,8 +4,8 @@ collectives = mcollective
 direct_addressing = y
 identity = <%= @node['fqdn'] %>
 libdir = <%= @site_plugins %>:<%= @node['mcollective']['libdir'] %>
-logfile = /var/log/mcollective.log
-loglevel = info
+logfile = <%= @node['mcollective']['logfile'] %>
+loglevel = <%= @node['mcollective']['loglevel'] %>
 daemonize = 1
 
 # Plugins

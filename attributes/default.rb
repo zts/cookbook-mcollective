@@ -33,6 +33,11 @@ default['mcollective']['stomp']['port'] = "6163"
 default['mcollective']['stomp']['username'] = "mcollective"
 default['mcollective']['stomp']['password'] = "marionette"
 
+# Logging
+default['mcollective']['logfile'] = "/var/log/mcollective.log"
+default['mcollective']['loglevel'] = "info"
+
+
 default['mcollective']['site_plugins'] = "/etc/mcollective/site_plugins/mcollective"
 
 # Fact Source
