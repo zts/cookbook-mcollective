@@ -31,13 +31,11 @@ end
 template "/etc/mcollective/plugin.d/stomp.cfg" do
   source "plugin-stomp.cfg.erb"
   mode 0600
-  notifies :restart, 'service[mcollective]'
   variables :stomp => node['mcollective']['stomp']
 end
 
 template "/etc/mcollective/plugin.d/activemq.cfg" do
   source "plugin-activemq.cfg.erb"
   mode 0600
-  notifies :restart, 'service[mcollective]'
   variables :stomp => node['mcollective']['stomp']
 end

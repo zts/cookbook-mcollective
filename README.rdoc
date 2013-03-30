@@ -75,7 +75,8 @@ update node['mcollective']['install_recipe'] to use them instead.
 
 = TODO:
 
-* Configurable fact- and class-file names.
+* Updates to common configuration should restart the server (but only if it is configured on the node)
+* Configurable fact- and class-file names
 * Tests
 
 = LICENSE:
