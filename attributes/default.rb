@@ -39,6 +39,7 @@ default['mcollective']['loglevel'] = "info"
 
 
 default['mcollective']['site_plugins'] = "/etc/mcollective/site_plugins/mcollective"
+default['mcollective']['plugin_conf'] = "/etc/mcollective/plugin.d"
 
 # Fact Source
 # The default option configures MCollective to read a YAML file

@@ -43,8 +43,9 @@ STOMP service connection details (used by "stomp" and "activemq" plugins):
 * mcollective['stomp']['username']
 * mcollective['stomp']['password']
 
-Site Plugin path:
+Important Locations:
 * mcollective['site_plugins'] - installation location for extra plugins (this is added to the MCollective plugin path)
+* mcollective['plugin_conf'] - per-plugin configuration files
 
 Facts:
 * mcollective['factsource'] - sets where MCollective gets facts from

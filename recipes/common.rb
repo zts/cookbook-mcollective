@@ -21,13 +21,7 @@
 # Install common components
 include_recipe node['mcollective']['recipes']['install_common']
 
-directory "/etc/mcollective/plugin.d" do
-  owner "root"
-  group "root"
-  mode 00755
-  action :create
-end
-
+# directory for unpackaged plugins (extra mcollective libdir)
 remote_directory "#{node['mcollective']['site_plugins']}" do
   source 'plugins'
   owner 'root'
@@ -38,13 +32,24 @@ remote_directory "#{node['mcollective']['site_plugins']}" do
   recursive true
 end
 
-template "/etc/mcollective/plugin.d/stomp.cfg" do
+# directory for per-plugin configuration (plugin.d)
+directory "#{node['mcollective']['plugin_conf']}" do
+  owner "root"
+  group "root"
+  mode 00755
+  action :create
+end
+
+## plugin configuration files
+# stomp connector
+template "#{node['mcollective']['plugin_conf']}/stomp.cfg" do
   source "plugin-stomp.cfg.erb"
   mode 0600
   variables :stomp => node['mcollective']['stomp']
 end
 
-template "/etc/mcollective/plugin.d/activemq.cfg" do
+# activemq connector
+template "#{node['mcollective']['plugin_conf']}/activemq.cfg" do
   source "plugin-activemq.cfg.erb"
   mode 0600
   variables :stomp => node['mcollective']['stomp']

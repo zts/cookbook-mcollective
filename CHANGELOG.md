@@ -1,5 +1,6 @@
 ## v0.11.0
 
+* New attribute - per-plugin cfg files go in mcollective['plugin_conf']
 * Recipes refactored to enable customisation of install method.
 * Create /etc/mcollective/plugin.d
 * Move Stomp plugin configuration to plugin.d
