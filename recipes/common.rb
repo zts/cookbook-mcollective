@@ -18,24 +18,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-package "rubygems" do
-  action :install
-end
-
-package "rubygem-stomp" do
-  case node['platform']
-  when "ubuntu","debian"
-    package_name "libstomp-ruby"
-  when "centos","redhat","fedora"
-    package_name "rubygem-stomp"
-  end
-  action :install
-end
-
-package "mcollective-common" do
-  action :install
-  version node['mcollective']['package']['version']
-end
+# Install common components
+include_recipe node['mcollective']['recipes']['install_common']
 
 directory "/etc/mcollective/plugin.d" do
   owner "root"

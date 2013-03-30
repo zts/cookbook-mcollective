@@ -16,12 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Ensure common components have been installed
 include_recipe "mcollective::common"
 
-package "mcollective-client" do
-  action :install
-  version node['mcollective']['package']['version']
-end
+# Install client components
+include_recipe node['mcollective']['recipes']['install_client']
 
 # The libdir paths in the MC configuration need to omit the
 # trailing "/mcollective"

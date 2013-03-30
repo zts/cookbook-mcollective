@@ -1,8 +1,10 @@
 #
 # Cookbook Name:: mcollective
-# Recipe:: default
+# Recipe:: install_common_pkg
 #
-# Copyright 2011, Zachary Stevens
+# Installs mcollective-common using packages.
+#
+# Copyright 2013, Zachary Stevens
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,5 +18,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe "mcollective::server"
-include_recipe "mcollective::client"
+if node['mcollective']['enable_puppetlabs_repo']
+  include_recipe 'mcollective::puppetlabs-repo'
+end
+
+package "rubygems" do
+  action :install
+end
+
+package "rubygem-stomp" do
+  case node['platform']
+  when "ubuntu","debian"
+    package_name "libstomp-ruby"
+  when "centos","redhat","fedora"
+    package_name "rubygem-stomp"
+  end
+  action :install
+end
+
+package "mcollective-common" do
+  action :install
+  version node['mcollective']['package']['version']
+end

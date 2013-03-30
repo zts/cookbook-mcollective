@@ -1,8 +1,10 @@
 #
 # Cookbook Name:: mcollective
-# Recipe:: default
+# Recipe:: install_server_pkg
 #
-# Copyright 2011, Zachary Stevens
+# Installs mcollective-server using packages.
+#
+# Copyright 2013, Zachary Stevens
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,5 +18,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe "mcollective::server"
-include_recipe "mcollective::client"
+package "mcollective" do
+  action :install
+  version node['mcollective']['package']['version']
+end

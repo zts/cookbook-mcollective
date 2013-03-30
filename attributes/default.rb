@@ -79,3 +79,14 @@ when "debian","ubuntu"
 when "redhat","centos","fedora"
   default['mcollective']['libdir'] = "/usr/libexec/mcollective"
 end
+
+## Cookbook plumbing
+# Recipe used to install common components
+default['mcollective']['recipes']['install_common'] = 'mcollective::_install_common_pkg'
+# Recipe used to install server components
+default['mcollective']['recipes']['install_server'] = 'mcollective::_install_server_pkg'
+# Recipe used to install client components
+default['mcollective']['recipes']['install_client'] = 'mcollective::_install_client_pkg'
+# Whether to enable the puppetlabs apt/yum repo when installing from packages.
+default['mcollective']['enable_puppetlabs_repo'] = true
+

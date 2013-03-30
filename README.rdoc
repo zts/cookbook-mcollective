@@ -64,6 +64,14 @@ You can customise installation by choosing from these recipes instead of the def
 * recipe[mcollective::client] installs the client components.
 * recipe[mcollective::puppetlabs-repo] installs the Puppetlabs apt/yum repo.
 
+= EXTENSION:
+
+This cookbook installs the MCollective packages using the repositories
+provided by PuppetLabs. If you have a local mirror of the required
+packages, set node['mcollective']['enable_puppetlabs_repo'] to false.
+If you need to make more extensive changes, write your own recipes and
+update node['mcollective']['install_recipe'] to use them instead.
+
 
 = TODO:
 

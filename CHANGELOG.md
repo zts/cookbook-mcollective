@@ -1,5 +1,6 @@
 ## v0.11.0
 
+* Recipes refactored to enable customisation of install method.
 * Create /etc/mcollective/plugin.d
 * Move Stomp plugin configuration to plugin.d
 * Parameterise connector type (default remains 'stomp')
