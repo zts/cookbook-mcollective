@@ -28,6 +28,16 @@ directory "/etc/mcollective/plugin.d" do
   action :create
 end
 
+remote_directory "#{node['mcollective']['site_plugins']}" do
+  source 'plugins'
+  owner 'root'
+  group 'root'
+  files_owner 'root'
+  files_group 'root'
+  mode "0755"
+  recursive true
+end
+
 template "/etc/mcollective/plugin.d/stomp.cfg" do
   source "plugin-stomp.cfg.erb"
   mode 0600
