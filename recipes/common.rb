@@ -22,7 +22,7 @@
 include_recipe node['mcollective']['recipes']['install_common']
 
 # directory for unpackaged plugins (extra mcollective libdir)
-remote_directory "#{node['mcollective']['site_plugins']}" do
+remote_directory node['mcollective']['site_plugins'] do
   source 'plugins'
   owner 'root'
   group 'root'
@@ -33,7 +33,7 @@ remote_directory "#{node['mcollective']['site_plugins']}" do
 end
 
 # directory for per-plugin configuration (plugin.d)
-directory "#{node['mcollective']['plugin_conf']}" do
+directory node['mcollective']['plugin_conf'] do
   owner "root"
   group "root"
   mode 00755
