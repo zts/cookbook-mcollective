@@ -17,27 +17,36 @@
 # limitations under the License.
 #
 
-# version of mcollective to install
+# Specify a version to install, or leave nil for latest
 default['mcollective']['package']['version'] = nil
 
-# Security provider to use
+# Security provider plugin - psk/ssl/aes_security
 default['mcollective']['securityprovider'] = "psk"
 
-# pre-shared key
+# The key for the psk security provider
 default['mcollective']['psk'] = "unset"
 
-# STOMP server details
-default['mcollective']['connector'] = "activemq"
+# Connector plugin - activemq/rabbitmq/stomp
+default['mcollective']['connector']         = "activemq"
+
+# Use direct addressing?  Not supported on all connector plugins
+# (see the MCollective documentation)
+default['mcollective']['direct_addressing'] = "y"
+
+# STOMP server details (used by stomp and activemq connectors)
 default['mcollective']['stomp']['hostname'] = "localhost"
 default['mcollective']['stomp']['port'] = "6163"
 default['mcollective']['stomp']['username'] = "mcollective"
 default['mcollective']['stomp']['password'] = "marionette"
 
+# MCollective Identity
+default['mcollective']['identity'] = node['fqdn']
+
 # Logging
 default['mcollective']['logfile'] = "/var/log/mcollective.log"
 default['mcollective']['loglevel'] = "info"
 
-
+# Locations
 default['mcollective']['site_plugins'] = "/etc/mcollective/site_plugins/mcollective"
 default['mcollective']['plugin_conf'] = "/etc/mcollective/plugin.d"
 
@@ -49,7 +58,10 @@ default['mcollective']['plugin_conf'] = "/etc/mcollective/plugin.d"
 #
 # Set this to 'ohai' to instead use the opscodeohai MCollective Fact
 # plugin.
-default['mcollective']['factsource'] = 'yaml'
+default['mcollective']['factsource']    = 'yaml'
+default['mcollective']['yaml_factfile'] = '/etc/mcollective/facts.yaml'
+
+default['mcollective']['classesfile']   = '/var/tmp/chefnode.txt'
 
 # Ohai keys to include in the YAML fact list.
 default['mcollective']['fact_whitelist'] = [

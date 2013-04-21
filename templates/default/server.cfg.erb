@@ -1,29 +1,29 @@
 topicprefix = /topic/
 main_collective = mcollective
 collectives = mcollective
-direct_addressing = y
-identity = <%= @node['fqdn'] %>
-libdir = <%= @site_plugins %>:<%= @node['mcollective']['libdir'] %>
-logfile = <%= @node['mcollective']['logfile'] %>
-loglevel = <%= @node['mcollective']['loglevel'] %>
+direct_addressing = <%= @config['direct_addressing'] %>
+identity = <%= @config['identity'] %>
+libdir = <%= @site_plugins %>:<%= @config['libdir'] %>
+logfile = <%= @config['logfile'] %>
+loglevel = <%= @config['loglevel'] %>
 daemonize = 1
 
 # Plugins
-securityprovider = <%= @node['mcollective']['securityprovider'] %>
-<%- if @node['mcollective']['securityprovider'] == "psk" %>
-plugin.psk =  <%= @node['mcollective']['psk'] %>
+securityprovider = <%= @config['securityprovider'] %>
+<%- if @config['securityprovider'] == "psk" %>
+plugin.psk = <%= @config['psk'] %>
 <%- end %>
 
-connector = <%= @node['mcollective']['connector'] %>
+connector = <%= @config['connector'] %>
 
 # Facts
-<% if @node['mcollective']['factsource'] == 'ohai' %>
+<% if @config['factsource'] == 'ohai' %>
 factsource = opscodeohai
 fact_cache_time = 300
 <% else %>
 factsource = yaml
-plugin.yaml = /etc/mcollective/facts.yaml
+plugin.yaml = <%= @config['yaml_factfile'] %>
 <% end %>
 
 # Classes
-classesfile = /var/tmp/chefnode.txt
+classesfile = <%= @config['classesfile'] %>

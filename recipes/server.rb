@@ -34,7 +34,8 @@ template "/etc/mcollective/server.cfg" do
   source "server.cfg.erb"
   mode 0600
   notifies :restart, 'service[mcollective]'
-  variables :site_plugins => site_libdir
+  variables :site_plugins => site_libdir,
+            :config       => node['mcollective']
 end
 
 cookbook_file "#{node['mcollective']['site_plugins']}/facts/opscodeohai_facts.rb" do

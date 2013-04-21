@@ -1,5 +1,9 @@
 ## v0.11.0
 
+* Parameterise direct_addressing, factfile and classfile locations,
+  and identity
+* Berkshelf
+* FoodCritic fixups.
 * New attribute - per-plugin cfg files go in mcollective['plugin_conf']
 * Recipes refactored to enable customisation of install method.
 * Create /etc/mcollective/plugin.d

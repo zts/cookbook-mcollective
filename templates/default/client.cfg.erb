@@ -1,24 +1,24 @@
 topicprefix = /topic/
 main_collective = mcollective
 collectives = mcollective
-direct_addressing = y
-libdir = <%= @site_plugins %>:<%= @node['mcollective']['libdir'] %>
+direct_addressing = <%= @config['direct_addressing'] %>
+libdir = <%= @site_plugins %>:<%= @config['libdir'] %>
 logfile = /dev/null
 loglevel = info
 
 # Plugins
-securityprovider = <%= @node['mcollective']['securityprovider'] %>
-<%- if @node['mcollective']['securityprovider'] == "psk" %>
-plugin.psk =  <%= @node['mcollective']['psk'] %>
+securityprovider = <%= @config['securityprovider'] %>
+<%- if @config['securityprovider'] == "psk" %>
+plugin.psk = <%= @config['psk'] %>
 <%- end %>
 
-connector = <%= @node['mcollective']['connector'] %>
+connector = <%= @config['connector'] %>
 
 # Facts
-<% if @node['mcollective']['factsource'] == 'ohai' %>
+<% if @config['factsource'] == 'ohai' %>
 factsource = opscodeohai
 fact_cache_time = 300
 <% else %>
 factsource = yaml
-plugin.yaml = /etc/mcollective/facts.yaml
+plugin.yaml = <%= @config['yaml_factfile'] %>
 <% end %>

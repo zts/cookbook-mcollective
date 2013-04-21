@@ -29,5 +29,6 @@ site_libdir = node['mcollective']['site_plugins'].sub(/\/mcollective$/, '')
 template "/etc/mcollective/client.cfg" do
   source "client.cfg.erb"
   mode 0644
-  variables :site_plugins => site_libdir
+  variables :site_plugins => site_libdir,
+            :config       => node['mcollective']
 end
