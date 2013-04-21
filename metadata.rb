@@ -1,6 +1,7 @@
 maintainer       "Zachary Stevens"
 maintainer_email "zts@cryptocracy.com"
 license          "Apache v2.0"
+name             "mcollective"
 description      "Installs/Configures mcollective"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.11.0"
