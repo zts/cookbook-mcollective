@@ -1,15 +1,22 @@
 ## v0.11.0
 
-* Parameterise direct_addressing, factfile and classfile locations,
-  identity, and collective membership
-* Berkshelf
-* FoodCritic fixups.
-* New attribute - per-plugin cfg files go in mcollective['plugin_conf']
-* Recipes refactored to enable customisation of install method.
-* Create /etc/mcollective/plugin.d
-* Move Stomp plugin configuration to plugin.d
-* Parameterise connector type (default remains 'stomp')
-* Parameterise log level and location
+* Add support for the ActiveMQ connector and direct-addressing mode.
+
+* New parameterised configuration:
+ * mcollective identity
+ * collective membership
+ * connector plugin
+ * log level and logfile location
+ * factfile and classfile locations
+
+* New defaults:
+ * connector is now 'activemq' (was 'stomp')
+ * direct_addressing is enabled (was unsupported)
+
+* Recipes have been refactored so that it is easier to customise the
+  install process.
+
+* Foodcritic fixes and updated README
 
 ## v0.10.2
 
