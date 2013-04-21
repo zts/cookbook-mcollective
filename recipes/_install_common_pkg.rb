@@ -27,10 +27,10 @@ package "rubygems" do
 end
 
 package "rubygem-stomp" do
-  case node['platform']
-  when "ubuntu","debian"
+  case node['platform_family']
+  when "debian"
     package_name "libstomp-ruby"
-  when "centos","redhat","fedora"
+  when "rhel","fedora"
     package_name "rubygem-stomp"
   end
   action :install

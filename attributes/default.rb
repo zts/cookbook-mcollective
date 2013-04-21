@@ -74,10 +74,10 @@ default['mcollective']['fact_whitelist'] = [
                                            ]
 
 # MCollective plugin location (created by the packages)
-case platform
-when "debian","ubuntu"
+case platform_family
+when "debian"
   default['mcollective']['libdir'] = "/usr/share/mcollective/plugins"
-when "redhat","centos","fedora"
+when "rhel","fedora"
   default['mcollective']['libdir'] = "/usr/libexec/mcollective"
 end
 

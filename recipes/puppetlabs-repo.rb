@@ -18,8 +18,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-case node['platform']
-when "ubuntu","debian"
+case node['platform_family']
+when "debian"
   apt_repository "puppetlabs" do
     uri "http://apt.puppetlabs.com/"
     components [ node['lsb']['codename'], "main" ]
@@ -27,8 +27,7 @@ when "ubuntu","debian"
     keyserver "pgp.mit.edu"
     action :add
   end
-
-when "centos","redhat"
+when "rhel"
   yum_key "RPM-GPG-KEY-puppetlabs" do
     url "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs"
     action :add
