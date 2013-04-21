@@ -1,7 +1,7 @@
 ## v0.11.0
 
 * Parameterise direct_addressing, factfile and classfile locations,
-  and identity
+  identity, and collective membership
 * Berkshelf
 * FoodCritic fixups.
 * New attribute - per-plugin cfg files go in mcollective['plugin_conf']
