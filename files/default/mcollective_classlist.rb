@@ -15,7 +15,7 @@ module MCollective
         seen_recipes = run_status.node.run_state[:seen_recipes].keys
       end
 
-      state = File.open("/var/tmp/chefnode.txt", "w")
+      state = File.open(run_status.node['mcollective']['classesfile'], "w")
 
       seen_recipes.each do |recipe|
         # Normalise name of default recipes
@@ -46,7 +46,7 @@ module MCollective
       end
 
       # Write out the facts
-      factfile = File.open("/etc/mcollective/facts.yaml", "w")
+      factfile = File.open(run_status.node['mcollective']['yaml_factfile'], "w")
       factfile.write(YAML.dump(result))
       factfile.close
     end
