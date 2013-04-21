@@ -1,6 +1,6 @@
 topicprefix = /topic/
-main_collective = mcollective
-collectives = mcollective
+main_collective = <%= @config['main_collective'] %>
+collectives = <%= @config['collectives'] %>
 direct_addressing = <%= @config['direct_addressing'] %>
 libdir = <%= @site_plugins %>:<%= @config['libdir'] %>
 logfile = /dev/null

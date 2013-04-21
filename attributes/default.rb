@@ -39,8 +39,10 @@ default['mcollective']['stomp']['port'] = "6163"
 default['mcollective']['stomp']['username'] = "mcollective"
 default['mcollective']['stomp']['password'] = "marionette"
 
-# MCollective Identity
-default['mcollective']['identity'] = node['fqdn']
+# MCollective Identity and collective membership
+default['mcollective']['identity']        = node['fqdn']
+default['mcollective']['main_collective'] = "mcollective"
+default['mcollective']['collectives']     = "mcollective"
 
 # Logging
 default['mcollective']['logfile'] = "/var/log/mcollective.log"
