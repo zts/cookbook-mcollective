@@ -1,4 +1,6 @@
+<%- if @config['connector'] == 'stomp' %>
 topicprefix = /topic/
+<%- end %>
 main_collective = <%= @config['main_collective'] %>
 collectives = <%= @config['collectives'] %>
 direct_addressing = <%= @config['direct_addressing'] %>
