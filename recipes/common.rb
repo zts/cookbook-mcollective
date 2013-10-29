@@ -54,3 +54,11 @@ template "#{node['mcollective']['plugin_conf']}/activemq.cfg" do
   mode 0600
   variables :stomp => node['mcollective']['stomp']
 end
+
+# rabbitmq connector
+template "#{node['mcollective']['plugin_conf']}/rabbitmq.cfg" do
+  source "plugin-rabbitmq.cfg.erb"
+  mode 0600
+  variables :stomp => node['mcollective']['stomp'],
+            :rabbitmq => node['mcollective']['rabbitmq']
+end
