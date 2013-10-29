@@ -33,7 +33,10 @@ default['mcollective']['connector']         = "activemq"
 # (see the MCollective documentation)
 default['mcollective']['direct_addressing'] = "y"
 
-# STOMP server details (used by stomp and activemq connectors)
+# RabbitMQ details (used by rabbitmq connector)
+default['mcollective']['rabbitmq']['vhost'] = "/"
+
+# STOMP server details (used by stomp, rabbitmq and activemq connectors)
 default['mcollective']['stomp']['hostname'] = "localhost"
 default['mcollective']['stomp']['port'] = "6163"
 default['mcollective']['stomp']['username'] = "mcollective"

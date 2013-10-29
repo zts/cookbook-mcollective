@@ -59,5 +59,6 @@ end
 template "#{node['mcollective']['plugin_conf']}/rabbitmq.cfg" do
   source "plugin-rabbitmq.cfg.erb"
   mode 0600
-  variables :stomp => node['mcollective']['stomp']
+  variables :stomp => node['mcollective']['stomp'],
+            :rabbitmq => node['mcollective']['rabbitmq']
 end
