@@ -1,3 +1,10 @@
+## v0.12.0
+
+ * FIX overriding mcollective client identity (thanks to Daniel
+   Leyden)
+ * Add support for native RabbitMQ connector (thanks to Simon
+   Pasquier)
+
 ## v0.11.0
 
 * Add support for the ActiveMQ connector and direct-addressing mode.
