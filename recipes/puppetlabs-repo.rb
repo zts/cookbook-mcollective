@@ -56,7 +56,6 @@ when "fedora"
     name "puppetlabs"
     description "Puppet Labs Packages"
     url "http://yum.puppetlabs.com/fedora/f$releasever/products/$basearch"
-    url "http://yum.puppetlabs.com/fedora/"
     action :add
   end
   yum_repository "puppetlabs-deps" do
