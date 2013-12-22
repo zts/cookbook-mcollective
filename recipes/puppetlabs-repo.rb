@@ -28,15 +28,24 @@ when "debian"
     action :add
   end
 when "rhel"
-  yum_key "RPM-GPG-KEY-puppetlabs" do
-    url "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs"
-    action :add
+  # Version 3 of the yum cookbook removes the "yum_key" resource,
+  # among other changes.  This block assumes that an older version is
+  # being used, and switches to the new style if that fails
+  begin
+    yum_cookbook_3 = false
+    yum_key "RPM-GPG-KEY-puppetlabs" do
+      url "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs"
+      action :add
+    end
+  rescue NameError
+    yum_cookbook_3 = true
   end
 
   yum_repository "puppetlabs" do
     name "puppetlabs"
     description "Puppet Labs Packages"
     url "http://yum.puppetlabs.com/el/$releasever/products/$basearch"
+    gpgkey "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs" if yum_cookbook_3
     action :add
   end
 
@@ -44,25 +53,32 @@ when "rhel"
     name "puppetlabs-deps"
     description "Dependencies for Puppet Labs Software"
     url "http://yum.puppetlabs.com/el/$releasever/dependencies/$basearch"
+    gpgkey "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs" if yum_cookbook_3
     action :add
   end
 when "fedora"
-  yum_key "RPM-GPG-KEY-puppetlabs" do
-    url "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs"
-    action :add
+  begin
+    yum_cookbook_3 = false
+    yum_key "RPM-GPG-KEY-puppetlabs" do
+      url "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs"
+      action :add
+    end
+  rescue NameError
+    yum_cookbook_3 = true
   end
 
   yum_repository "puppetlabs" do
     name "puppetlabs"
     description "Puppet Labs Packages"
     url "http://yum.puppetlabs.com/fedora/f$releasever/products/$basearch"
-    url "http://yum.puppetlabs.com/fedora/"
+    gpgkey "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs" if yum_cookbook_3
     action :add
   end
   yum_repository "puppetlabs-deps" do
     name "puppetlabs-deps"
     description "Dependencies for Puppet Labs Software"
     url "http://yum.puppetlabs.com/fedora/$releasever/dependencies/$basearch"
+    gpgkey "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs" if yum_cookbook_3
     action :add
   end
 end

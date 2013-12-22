@@ -1,0 +1,21 @@
+---
+driver:
+  name: vagrant
+
+driver_config:
+  provider: vmware_fusion
+  customize:
+    memory: 512
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: ubuntu-12.04
+  - name: centos-6.4
+
+suites:
+  - name: default
+    run_list:
+      - recipe[mcollective::default]
+    attributes:
