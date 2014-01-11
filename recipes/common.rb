@@ -64,12 +64,18 @@ template "#{node['mcollective']['plugin_conf']}/rabbitmq.cfg" do
 end
 
 # redis connector
-remote_file "#{node['mcollective']['site_plugins']}/connector/redis.rb" do
-  source "https://github.com/ripienaar/mc-plugins/raw/master/connector/redis/redis.rb"
-  mode 0644
-end
-template "#{node['mcollective']['plugin_conf']}/redis.cfg" do
-  source "plugin-redis.cfg.erb"
-  mode 0600
- variables :redis => node['mcollective']['redis']
+if node['mcollective']['connector'] == 'redis'
+  # install the connector
+  gem_package "redis"
+  remote_file "#{node['mcollective']['site_plugins']}/connector/redis.rb" do
+    source "https://github.com/ripienaar/mc-plugins/raw/master/connector/redis/redis.rb"
+    mode 0644
+  end
+
+  # install plugin configuration
+  template "#{node['mcollective']['plugin_conf']}/redis.cfg" do
+    source "plugin-redis.cfg.erb"
+    mode 0600
+    variables :redis => node['mcollective']['redis']
+  end
 end

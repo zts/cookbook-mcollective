@@ -98,5 +98,9 @@ describe 'mcollective::server' do
     it 'installs the redis connector plugin' do
       expect(chef_run).to create_remote_file("/etc/mcollective/site_plugins/mcollective/connector/redis.rb")
     end
+
+    it 'installs the required gems' do
+      expect(chef_run).to install_gem_package("redis")
+    end
   end
 end
