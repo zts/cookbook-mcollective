@@ -1,3 +1,10 @@
+## v0.13.0
+
+ * Support installing (from github) and configuring the redis
+   connector.
+ * chefspec and kitchen tests covering server installation and
+   configuration of activemq/rabbitmq/redis connectors.
+
 ## v0.12.1
 
  * Add support for the new yum cookbook (version 3.x).  Earlier
