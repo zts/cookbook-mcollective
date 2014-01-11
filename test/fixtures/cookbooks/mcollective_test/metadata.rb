@@ -6,4 +6,4 @@ description      "Helps test the mcollective cookbook"
 version          "0.1.0"
 
 depends 'activemq', '~> 1.3.0'
-
+depends 'rabbitmq'
