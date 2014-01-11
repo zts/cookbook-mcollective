@@ -37,3 +37,12 @@ suites:
     attributes:
       mcollective:
         connector: rabbitmq
+  - name: redis
+    excludes:
+      - ubuntu-12.04
+    run_list:
+      - recipe[mcollective_test::redis]
+      - recipe[mcollective::default]
+    attributes:
+      mcollective:
+        connector: redis
