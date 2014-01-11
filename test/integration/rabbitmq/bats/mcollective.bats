@@ -1,0 +1,1 @@
+../../activemq/bats/mcollective.bats

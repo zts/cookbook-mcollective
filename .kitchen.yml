@@ -28,3 +28,12 @@ suites:
     attributes:
       mcollective:
         psk: testkitchen
+  - name: rabbitmq
+    excludes:
+      - ubuntu-12.04
+    run_list:
+      - recipe[mcollective_test::rabbitmq]
+      - recipe[mcollective::default]
+    attributes:
+      mcollective:
+        connector: rabbitmq
