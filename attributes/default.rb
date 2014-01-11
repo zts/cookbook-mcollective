@@ -26,7 +26,7 @@ default['mcollective']['securityprovider'] = "psk"
 # The key for the psk security provider
 default['mcollective']['psk'] = "unset"
 
-# Connector plugin - activemq/rabbitmq/stomp
+# Connector plugin - activemq/rabbitmq/stomp/redis
 default['mcollective']['connector']         = "activemq"
 
 # Use direct addressing?  Not supported on all connector plugins
@@ -35,6 +35,11 @@ default['mcollective']['direct_addressing'] = "y"
 
 # RabbitMQ details (used by rabbitmq connector)
 default['mcollective']['rabbitmq']['vhost'] = "/"
+
+# Redis details
+default['mcollective']['redis']['hostname'] = "localhost"
+default['mcollective']['redis']['port'] = "6379"
+default['mcollective']['redis']['db'] = "1"
 
 # STOMP server details (used by stomp, rabbitmq and activemq connectors)
 default['mcollective']['stomp']['hostname'] = "localhost"
