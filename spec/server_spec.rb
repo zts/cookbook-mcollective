@@ -62,7 +62,7 @@ describe 'mcollective::server' do
         .with_content(/connector = rabbitmq/)
     end
 
-    it 'writes the activemq plugin config' do
+    it 'writes the rabbitmq plugin config' do
       words = %w{testhost 12345 testuser testpass}
       words.each do |word|
         expect(chef_run).to render_file('/etc/mcollective/plugin.d/rabbitmq.cfg')
