@@ -20,4 +20,29 @@ describe 'mcollective::server' do
   it 'registers the chef handler' do
     expect(chef_run).to enable_chef_handler('MCollective::ClassList')
   end
+
+  context 'configured to use activemq' do
+    let(:chef_run) {
+      chef_run = ChefSpec::Runner.new(:platform => 'redhat', :version => '6.3')
+      chef_run.node.set['mcollective']['connector'] = 'activemq'
+      chef_run.node.set['mcollective']['stomp']['hostname'] = 'testhost'
+      chef_run.node.set['mcollective']['stomp']['port'] = '12345'
+      chef_run.node.set['mcollective']['stomp']['username'] = 'testuser'
+      chef_run.node.set['mcollective']['stomp']['password'] = 'testpass'
+      chef_run.converge(described_recipe)
+    }
+
+    it 'sets the connector in server.cfg' do
+      expect(chef_run).to render_file('/etc/mcollective/server.cfg')
+        .with_content(/connector = activemq/)
+    end
+
+    it 'writes the activemq plugin config' do
+      words = %w{testhost 12345 testuser testpass}
+      words.each do |word|
+        expect(chef_run).to render_file('/etc/mcollective/plugin.d/activemq.cfg')
+          .with_content(/#{word}/)
+      end
+    end
+  end
 end
