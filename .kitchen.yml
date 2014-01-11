@@ -19,3 +19,12 @@ suites:
     run_list:
       - recipe[mcollective::default]
     attributes:
+  - name: activemq
+    excludes:
+      - centos-6.4
+    run_list:
+      - recipe[mcollective_test::activemq]
+      - recipe[mcollective::default]
+    attributes:
+      mcollective:
+        psk: testkitchen
