@@ -9,6 +9,11 @@
       [ $status -eq 0 ]
 }
 
+@test "the kitchen user can run mco ping" {
+      run sudo -u kitchen mco ping -I `hostname`
+      [ $status -eq 0 ]
+}
+
 @test "server has the mcollective chef agent installed " {
       run sudo mco rpc rpcutil agent_inventory -I `hostname` -j
       agents=$(echo $output | jq -r '.[0].data.agents[].agent')
