@@ -11,6 +11,11 @@ describe 'mcollective::client' do
     expect(chef_run).to render_file('/etc/mcollective/client.cfg')
   end
 
+  it 'sets the correct permissions on client.cfg' do
+    expect(chef_run).to create_template('/etc/mcollective/client.cfg')
+      .with(group: 'mcollective', mode: '0640')
+  end
+
   context 'configured to use activemq' do
     let(:chef_run) {
       chef_run = ChefSpec::Runner.new(:platform => 'redhat', :version => '6.3')
