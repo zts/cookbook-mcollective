@@ -21,6 +21,9 @@
 # mcollective group, which is permitted to read required config files.
 default['mcollective']['users'] = []
 
+# Name of the mcollective group
+default['mcollective']['group'] = 'mcollective'
+
 # Specify a version to install, or leave nil for latest
 default['mcollective']['package']['version'] = nil
 

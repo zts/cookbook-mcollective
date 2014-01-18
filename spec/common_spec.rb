@@ -7,6 +7,7 @@ describe 'mcollective::common' do
     expect(chef_run.node['mcollective']['site_plugins']).to be
     expect(chef_run.node['mcollective']['plugin_conf']).to be
     expect(chef_run.node['mcollective']['users']).to respond_to(:each)
+    expect(chef_run.node['mcollective']['group']).to eq('mcollective')
   end
 
   it 'creates the mcollective group' do
@@ -32,6 +33,22 @@ describe 'mcollective::common' do
 
     it 'adds the users to the mcollective group' do
       expect(chef_run).to create_group('mcollective').with(members: ['user1'])
+    end
+  end
+
+  context 'when the mcollective group attribute is overridden' do
+    let(:chef_run) {
+      chef_run = ChefSpec::Runner.new(:platform => 'redhat', :version => '6.3')
+      chef_run.node.set['mcollective']['group'] = 'testgroup'
+      chef_run.converge(described_recipe)
+    }
+
+    it "doesn't create the default mcollective group" do
+      expect(chef_run).to_not create_group('mcollective')
+    end
+
+    it "does create the renamed mcollective group" do
+      expect(chef_run).to create_group('testgroup')
     end
   end
 

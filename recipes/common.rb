@@ -22,7 +22,7 @@
 include_recipe node['mcollective']['recipes']['install_common']
 
 # Create a group permitted to read mcollective config
-group 'mcollective' do
+group node['mcollective']['group'] do
   members node['mcollective']['users']
   action :create
 end
@@ -51,7 +51,7 @@ end
 template "#{node['mcollective']['plugin_conf']}/stomp.cfg" do
   source "plugin-stomp.cfg.erb"
   owner 'root'
-  group 'mcollective'
+  group node['mcollective']['group']
   mode '0640'
   variables :stomp => node['mcollective']['stomp']
 end
@@ -60,7 +60,7 @@ end
 template "#{node['mcollective']['plugin_conf']}/activemq.cfg" do
   source "plugin-activemq.cfg.erb"
   owner 'root'
-  group 'mcollective'
+  group node['mcollective']['group']
   mode '0640'
   variables :stomp => node['mcollective']['stomp']
 end
@@ -69,7 +69,7 @@ end
 template "#{node['mcollective']['plugin_conf']}/rabbitmq.cfg" do
   source "plugin-rabbitmq.cfg.erb"
   owner 'root'
-  group 'mcollective'
+  group node['mcollective']['group']
   mode '0640'
   variables :stomp => node['mcollective']['stomp'],
             :rabbitmq => node['mcollective']['rabbitmq']
@@ -88,7 +88,7 @@ if node['mcollective']['connector'] == 'redis'
   template "#{node['mcollective']['plugin_conf']}/redis.cfg" do
     source "plugin-redis.cfg.erb"
     user 'root'
-    group 'mcollective'
+    group node['mcollective']['group']
     mode '0640'
     variables :redis => node['mcollective']['redis']
   end
