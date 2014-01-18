@@ -6,7 +6,12 @@ package "logrotate"
 
 node.set['rabbitmq']['stomp'] = true
 node.set['rabbitmq']['stomp_port'] = node['mcollective']['stomp']['port']
-#include_recipe "rabbitmq::mgmt_console"
+include_recipe "rabbitmq::mgmt_console"
+
+# need to restart rabbit after installing the management plugin
+service "rabbitmq-server" do
+  action :restart
+end
 
 # Configure rabbitmq for mcollective
 rabbitmq_user node['mcollective']['stomp']['username'] do
@@ -21,6 +26,7 @@ end
 
 remote_file "/usr/bin/rabbitmqadmin" do
   source "http://127.0.0.1:15672/cli/rabbitmqadmin"
+  retries 5 # instead of retrying, we should wait for rabbitmq to be ready
   mode "755"
   action :create
 end
