@@ -17,6 +17,10 @@
 # limitations under the License.
 #
 
+# MCollective users - usernames in this array will be added to the
+# mcollective group, which is permitted to read required config files.
+default['mcollective']['users'] = []
+
 # Specify a version to install, or leave nil for latest
 default['mcollective']['package']['version'] = nil
 

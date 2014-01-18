@@ -43,6 +43,9 @@ ATTRIBUTES
 Refer to `attributes/default.rb` in the cookbook directory for details
 of all available attributes.
 
+ * `node['mcollective']['users']` - Array of usernames to add to the
+"mcollective" group.
+
 Frequently Used Settings
 ------------------------
 
