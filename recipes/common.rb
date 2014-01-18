@@ -87,7 +87,9 @@ if node['mcollective']['connector'] == 'redis'
   # install plugin configuration
   template "#{node['mcollective']['plugin_conf']}/redis.cfg" do
     source "plugin-redis.cfg.erb"
-    mode 0600
+    user 'root'
+    group 'mcollective'
+    mode '0640'
     variables :redis => node['mcollective']['redis']
   end
 end

@@ -94,6 +94,11 @@ describe 'mcollective::common' do
       end
     end
 
+    it 'sets correct permissions on the redis plugin config' do
+      expect(chef_run).to create_template('/etc/mcollective/plugin.d/redis.cfg')
+        .with(group: 'mcollective', mode: '0640')
+    end
+
     it 'installs the redis connector plugin' do
       expect(chef_run).to create_remote_file("/etc/mcollective/site_plugins/mcollective/connector/redis.rb")
     end
