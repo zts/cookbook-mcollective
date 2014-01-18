@@ -9,15 +9,19 @@ describe 'mcollective::common' do
     expect(chef_run.node['mcollective']['users']).to respond_to(:each)
   end
 
+  it 'creates the mcollective group' do
+    expect(chef_run).to create_group('mcollective')
+  end
+
   context 'when the mcollective users attribute is populated' do
     let(:chef_run) {
       chef_run = ChefSpec::Runner.new(:platform => 'redhat', :version => '6.3')
       chef_run.node.set['mcollective']['users'] = ['user1']
       chef_run.converge(described_recipe)
     }
-  end
 
-  it 'creates the mcollective group' do
-    expect(chef_run).to create_group('mcollective')
+    it 'adds the users to the mcollective group' do
+      expect(chef_run).to create_group('mcollective').with(members: ['user1'])
+    end
   end
 end

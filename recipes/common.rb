@@ -23,6 +23,7 @@ include_recipe node['mcollective']['recipes']['install_common']
 
 # Create a group permitted to read mcollective config
 group 'mcollective' do
+  members node['mcollective']['users']
   action :create
 end
 
