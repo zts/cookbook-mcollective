@@ -1,3 +1,10 @@
+## v0.14.0
+
+ * Add ['mcollective']['users'] attribute - these users will be added
+ to the 'mcollective' group, allowing them to run mco as themselves.
+ * Add ['mcollective']['group'] attribute, to specify the groupname.
+ * Restrict read permissions on client.cfg to mcollective users
+
 ## v0.13.0
 
  * Support installing (from github) and configuring the redis
