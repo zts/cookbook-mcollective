@@ -13,6 +13,16 @@ describe 'mcollective::common' do
     expect(chef_run).to create_group('mcollective')
   end
 
+  it 'creates the activemq config with correct permissions' do
+    expect(chef_run).to create_template('/etc/mcollective/plugin.d/activemq.cfg')
+      .with(group: 'mcollective', mode: '0640')
+  end
+
+  it 'creates the rabbitmq config with correct permissions' do
+    expect(chef_run).to create_template('/etc/mcollective/plugin.d/rabbitmq.cfg')
+      .with(group: 'mcollective', mode: '0640')
+  end
+
   context 'when the mcollective users attribute is populated' do
     let(:chef_run) {
       chef_run = ChefSpec::Runner.new(:platform => 'redhat', :version => '6.3')

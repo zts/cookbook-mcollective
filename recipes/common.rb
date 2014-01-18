@@ -50,21 +50,27 @@ end
 # stomp connector
 template "#{node['mcollective']['plugin_conf']}/stomp.cfg" do
   source "plugin-stomp.cfg.erb"
-  mode 0600
+  owner 'root'
+  group 'mcollective'
+  mode '0640'
   variables :stomp => node['mcollective']['stomp']
 end
 
 # activemq connector
 template "#{node['mcollective']['plugin_conf']}/activemq.cfg" do
   source "plugin-activemq.cfg.erb"
-  mode 0600
+  owner 'root'
+  group 'mcollective'
+  mode '0640'
   variables :stomp => node['mcollective']['stomp']
 end
 
 # rabbitmq connector
 template "#{node['mcollective']['plugin_conf']}/rabbitmq.cfg" do
   source "plugin-rabbitmq.cfg.erb"
-  mode 0600
+  owner 'root'
+  group 'mcollective'
+  mode '0640'
   variables :stomp => node['mcollective']['stomp'],
             :rabbitmq => node['mcollective']['rabbitmq']
 end
