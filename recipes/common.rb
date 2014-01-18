@@ -21,6 +21,11 @@
 # Install common components
 include_recipe node['mcollective']['recipes']['install_common']
 
+# Create a group permitted to read mcollective config
+group 'mcollective' do
+  action :create
+end
+
 # directory for unpackaged plugins (extra mcollective libdir)
 remote_directory node['mcollective']['site_plugins'] do
   source 'plugins'
