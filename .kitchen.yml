@@ -27,6 +27,7 @@ suites:
       - recipe[mcollective::default]
     attributes:
       mcollective:
+        users: kitchen
         psk: testkitchen
   - name: rabbitmq
     excludes:
@@ -36,6 +37,7 @@ suites:
       - recipe[mcollective::default]
     attributes:
       mcollective:
+        users: kitchen
         connector: rabbitmq
   - name: redis
     excludes:
@@ -45,4 +47,5 @@ suites:
       - recipe[mcollective::default]
     attributes:
       mcollective:
+        users: kitchen
         connector: redis
