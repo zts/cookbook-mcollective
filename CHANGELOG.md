@@ -1,3 +1,7 @@
+## v0.14.2
+
+ * FIX invalid redis connector configuration
+
 ## v0.14.1
 
  * FIX invalid puppetlabs repo added on amazon linux

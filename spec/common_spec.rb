@@ -104,11 +104,10 @@ describe 'mcollective::common' do
     }
 
     it 'writes the redis plugin config' do
-      words = %w{testhost 12345}
-      words.each do |word|
-        expect(chef_run).to render_file('/etc/mcollective/plugin.d/redis.cfg')
-          .with_content(/#{word}/)
-      end
+      expect(chef_run).to render_file('/etc/mcollective/plugin.d/redis.cfg')
+        .with_content(/host = testhost/)
+      expect(chef_run).to render_file('/etc/mcollective/plugin.d/redis.cfg')
+        .with_content(/port = 12345/)
     end
 
     it 'sets correct permissions on the redis plugin config' do
