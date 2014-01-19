@@ -41,10 +41,17 @@ when "rhel"
     yum_cookbook_3 = true
   end
 
+  # on amazon linux, $releasever is "latest", which the repo doesn't support
+  if platform?("amazon")
+    release = "6Server"
+  else
+    release = "$releasever"
+  end
+
   yum_repository "puppetlabs" do
     name "puppetlabs"
     description "Puppet Labs Packages"
-    url "http://yum.puppetlabs.com/el/$releasever/products/$basearch"
+    url "http://yum.puppetlabs.com/el/#{release}/products/$basearch"
     gpgkey "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs" if yum_cookbook_3
     action :add
   end
@@ -52,7 +59,7 @@ when "rhel"
   yum_repository "puppetlabs-deps" do
     name "puppetlabs-deps"
     description "Dependencies for Puppet Labs Software"
-    url "http://yum.puppetlabs.com/el/$releasever/dependencies/$basearch"
+    url "http://yum.puppetlabs.com/el/#{release}/dependencies/$basearch"
     gpgkey "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs" if yum_cookbook_3
     action :add
   end

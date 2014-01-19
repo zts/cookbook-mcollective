@@ -1,3 +1,7 @@
+## v0.14.1
+
+ * FIX invalid puppetlabs repo added on amazon linux
+
 ## v0.14.0
 
  * Add ['mcollective']['users'] attribute - these users will be added
