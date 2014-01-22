@@ -12,13 +12,49 @@ describe 'mcollective::server' do
     expect(chef_run).to render_file('/etc/mcollective/server.cfg')
   end
 
-  it 'notifies the service to restart' do
+  it 'updates to server.cfg notify the service to restart' do
     resource = chef_run.template('/etc/mcollective/server.cfg')
     expect(resource).to notify('service[mcollective]').to(:restart)
   end
 
   it 'registers the chef handler' do
     expect(chef_run).to enable_chef_handler('MCollective::ClassList')
+  end
+
+  it 'installs the opscodeohai plugin' do
+    expect(chef_run).to create_cookbook_file('/etc/mcollective/site_plugins/mcollective/facts/opscodeohai_facts.rb')
+  end
+  it 'updates to the opscodeohai plugin do not notify the service to restart' do
+    resource = chef_run.cookbook_file('/etc/mcollective/site_plugins/mcollective/facts/opscodeohai_facts.rb')
+    expect(resource).not_to notify('service[mcollective]')
+  end
+
+  context 'when configured not to install the chef handler' do
+    let(:chef_run) {
+      chef_run = ChefSpec::Runner.new(:platform => 'redhat', :version => '6.3')
+      chef_run.node.set['mcollective']['install_chef_handler?'] = false
+      chef_run.converge(described_recipe)
+    }
+
+    it 'does not register the chef handler' do
+      expect(chef_run).not_to enable_chef_handler('MCollective::ClassList')
+    end
+  end
+
+  context 'when configured to use the opscodeohai fact source' do
+    let(:chef_run) {
+      chef_run = ChefSpec::Runner.new(:platform => 'redhat', :version => '6.3')
+      chef_run.node.set['mcollective']['factsource'] = 'ohai'
+      chef_run.converge(described_recipe)
+    }
+
+    it 'installs the opscodeohai plugin' do
+      expect(chef_run).to create_cookbook_file('/etc/mcollective/site_plugins/mcollective/facts/opscodeohai_facts.rb')
+    end
+    it 'updates to the opscodeohai plugin notify the service to restart' do
+      resource = chef_run.cookbook_file('/etc/mcollective/site_plugins/mcollective/facts/opscodeohai_facts.rb')
+      expect(resource).to notify('service[mcollective]').to(:restart)
+    end
   end
 
   context 'configured to use activemq' do

@@ -27,15 +27,33 @@ group node['mcollective']['group'] do
   action :create
 end
 
-# directory for unpackaged plugins (extra mcollective libdir)
-remote_directory node['mcollective']['site_plugins'] do
-  source 'plugins'
-  owner 'root'
-  group 'root'
-  files_owner 'root'
-  files_group 'root'
-  mode "0755"
-  recursive true
+# directories for unpackaged plugins (extra mcollective libdir)
+plugin_types = %w{agent audit data facts registration security simplerpc_authorization}
+plugin_types.each do |dir|
+  directory "#{node['mcollective']['site_plugins']}/#{dir}" do
+    owner 'root'
+    group 'root'
+    mode "0755"
+    recursive true
+  end
+end
+
+# install chef agent
+cookbook_file "#{node['mcollective']['site_plugins']}/agent/chef.rb" do
+  source "plugins/agent/chef.rb"
+  mode '0644'
+  if resource(:service => 'mcollective')
+    notifies :restart, "service[mcollective]"
+  end rescue Chef::Exceptions::ResourceNotFound
+  only_if { node['mcollective']['install_chef_agent?'] }
+end
+cookbook_file "#{node['mcollective']['site_plugins']}/agent/chef.ddl" do
+  source "plugins/agent/chef.ddl"
+  mode '0644'
+  if resource(:service => 'mcollective')
+    notifies :restart, "service[mcollective]"
+  end rescue Chef::Exceptions::ResourceNotFound
+  only_if { node['mcollective']['install_chef_agent?'] }
 end
 
 # directory for per-plugin configuration (plugin.d)

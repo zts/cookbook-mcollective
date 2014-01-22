@@ -44,16 +44,17 @@ cookbook_file "#{node['mcollective']['site_plugins']}/facts/opscodeohai_facts.rb
   notifies :restart, 'service[mcollective]'
 end
 
-include_recipe "chef_handler"
+if node['mcollective']['install_chef_handler?']
+  include_recipe "chef_handler"
 
-cookbook_file "#{node['chef_handler']['handler_path']}/mcollective_classlist.rb" do
-  source "mcollective_classlist.rb"
-  mode 0644
+  cookbook_file "#{node['chef_handler']['handler_path']}/mcollective_classlist.rb" do
+    source "mcollective_classlist.rb"
+    mode 0644
+  end
+
+  chef_handler "MCollective::ClassList" do
+    source "#{node['chef_handler']['handler_path']}/mcollective_classlist.rb"
+    supports :report => true, :exception => false
+    action :enable
+  end
 end
-
-chef_handler "MCollective::ClassList" do
-  source "#{node['chef_handler']['handler_path']}/mcollective_classlist.rb"
-  supports :report => true, :exception => false
-  action :enable
-end
-

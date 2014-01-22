@@ -21,6 +21,13 @@
 # mcollective group, which is permitted to read required config files.
 default['mcollective']['users'] = []
 
+# Chef Integration - these options control whether to install an
+# MCollective agent (for controlling Chef), and Chef handlers to
+# expose data about the node to mco.  Disable these if you don't want
+# this functionality, or are installing it another way.
+default['mcollective']['install_chef_agent?'] = true
+default['mcollective']['install_chef_handler?'] = true
+
 # Name of the mcollective group
 default['mcollective']['group'] = 'mcollective'
 

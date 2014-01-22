@@ -52,6 +52,18 @@ describe 'mcollective::common' do
     end
   end
 
+  context 'when configured not to install the chef agent' do
+    let(:chef_run) {
+      chef_run = ChefSpec::Runner.new(:platform => 'redhat', :version => '6.3')
+      chef_run.node.set['mcollective']['install_chef_agent?'] = false
+      chef_run.converge(described_recipe)
+    }
+
+    it 'does not install the chef agent' do
+      expect(chef_run).not_to create_cookbook_file('/etc/mcollective/site_plugins/mcollective/agent/chef.rb')
+    end
+  end
+
   context 'when configured to use activemq' do
     let(:chef_run) {
       chef_run = ChefSpec::Runner.new(:platform => 'redhat', :version => '6.3')
