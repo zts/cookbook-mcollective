@@ -6,13 +6,18 @@ FoodCritic::Rake::LintTask.new(:lint) do |t|
   t.options = { :fail_tags => ["correctness"] }
 end
 
-desc "Run ChefSpec examples"
+desc "Run ChefSpec examples - junit output"
 RSpec::Core::RakeTask.new(:spec) do |t|
   t.rspec_opts = %w[-f JUnit -o results.xml]
 end
 
+desc "Run ChefSpec examples - console"
+RSpec::Core::RakeTask.new(:spec_tty) do |t|
+  t.rspec_opts = %w[-f d -c]
+end
+
 desc "Run all tests"
-task :test => [:lint, :spec]
+task :test => [:lint, :spec_tty]
 task :default => :test
 
 begin
