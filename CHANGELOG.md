@@ -1,3 +1,17 @@
+## v DEV
+
+ * Add mcollective.install\_chef\_agent? attribute to control whether
+   the Chef agent is installed by the cookbook.  You may wish to
+   disable this if you've packaged the plugin, or don't want to use
+   it.
+ * Add mcollective.install\_chef\_handler? attribute to control
+   whether the Chef handler is installed by the cookbook.  If you
+   disable this but enable the agent, note that some functionality may
+   be missing or broken.
+ * Improvement: be smarter about restarting the mcollective service
+   when configuration and plugins are updated.
+ * More tests (look up what they are)
+
 ## v0.14.2
 
  * FIX invalid redis connector configuration
