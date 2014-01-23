@@ -41,7 +41,7 @@ end
 cookbook_file "#{node['mcollective']['site_plugins']}/facts/opscodeohai_facts.rb" do
   source "opscodeohai_facts.rb"
   mode 0644
-  notifies :restart, 'service[mcollective]'
+  notifies :restart, 'service[mcollective]' if node['mcollective']['factsource'] == 'ohai'
 end
 
 if node['mcollective']['install_chef_handler?']
