@@ -11,7 +11,14 @@ action "wake_daemon", :description => "Nudge a daemonised chef-client" do
 end
 
 action "status", :description => "Check whether the chef-client daemon is running" do
-    display :always
+    output :status,
+           :description => "Status of the chef-client daemon",
+           :display_as => "Status"
+
+    summarize do
+        aggregate summary(:status)
+    end
+    display :failed
 end
 
 %w{start stop restart}.each do |act|

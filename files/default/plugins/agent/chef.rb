@@ -15,7 +15,7 @@ module MCollective
       :timeout            => 60
 
       def startup_hook
-        @initscript = @config.pluginconf["chef.client-initscript"] || "/etc/init.d/chef-client"
+        @initscript = @config.pluginconf["chef.client-initscript"] || "service chef-client"
         @pidfile = @config.pluginconf["chef.client-pidfile"] || "/var/run/chef/client.pid"
       end
 
@@ -38,10 +38,13 @@ module MCollective
         out = ""
         err = ""
         exitcode = run("#{@initscript} status", :stdout => out, :stderr => err)
-        if exitcode == 0 then
-          reply.statusmsg = "chef-client daemon is running"
-        else
-          reply.fail! "chef-client daemon is NOT running"
+        case exitcode
+        when 0
+          reply[:status] = "OK"
+        when 1
+          reply[:status] = "Missing"
+        when 3
+          reply[:status] = "Stopped"
         end
       end
 
