@@ -27,6 +27,12 @@ service "mcollective" do
   action [:enable, :start]
 end
 
+# Restart mcollective if the chef agent changes
+['rb', 'ddl'].each do |ext|
+  r = resources("cookbook_file[#{node['mcollective']['site_plugins']}/agent/chef.#{ext}]")
+  r.notifies :restart, "service[mcollective]"
+end
+
 # The libdir paths in the MC configuration need to omit the
 # trailing "/mcollective"
 site_libdir = node['mcollective']['site_plugins'].sub(/\/mcollective$/, '')
