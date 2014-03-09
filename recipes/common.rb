@@ -28,7 +28,7 @@ group node['mcollective']['group'] do
 end
 
 # directories for unpackaged plugins (extra mcollective libdir)
-plugin_types = %w{agent audit data facts registration security simplerpc_authorization}
+plugin_types = %w{agent audit connector data facts registration security simplerpc_authorization}
 plugin_types.each do |dir|
   directory "#{node['mcollective']['site_plugins']}/#{dir}" do
     owner 'root'
