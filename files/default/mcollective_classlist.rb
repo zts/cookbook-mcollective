@@ -46,9 +46,12 @@ module MCollective
       end
 
       # Write out the facts
-      factfile = File.open(run_status.node['mcollective']['yaml_factfile'], "w")
+      factfilename = run_status.node['mcollective']['yaml_factfile']
+      tmp_factfilename = factfilename + ".new"
+      factfile = File.open(tmp_factfilename, "w", 0444)
       factfile.write(YAML.dump(result))
       factfile.close
+      File.rename(tmp_factfilename, factfilename)
     end
     
     # From https://raw.github.com/puppetlabs/mcollective-plugins/master/facts/ohai/opscodeohai_facts.rb
