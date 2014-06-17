@@ -1,4 +1,4 @@
-## v DEV
+## v0.14.3
 
  * Add mcollective.install\_chef\_agent? attribute to control whether
    the Chef agent is installed by the cookbook.  You may wish to
@@ -10,8 +10,10 @@
    be missing or broken.
  * Improvement: be smarter about restarting the mcollective service
    when configuration and plugins are updated.
- * More tests (look up what they are)
  * FIX package installation on ubuntu
+ * Improve chef agent 'status' action.  The chef-client service is
+   identified as "running", "not running", or "missing".
+ * Improve chefspec coverage.
 
 ## v0.14.2
 
