@@ -1,7 +1,8 @@
 ## v0.15.0
 
  * Remove middleware credentials from connector plugin files.
- * Add middleware credentials to server.cfg.
+ * Add middleware credentials to server configuration.
+ * Add middleware credentials to client configuration.
 
 ## v0.14.3
 
