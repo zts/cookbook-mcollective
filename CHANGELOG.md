@@ -11,6 +11,7 @@
  * Improvement: be smarter about restarting the mcollective service
    when configuration and plugins are updated.
  * More tests (look up what they are)
+ * FIX package installation on ubuntu
 
 ## v0.14.2
 

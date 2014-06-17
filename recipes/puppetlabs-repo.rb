@@ -20,11 +20,21 @@
 
 case node['platform_family']
 when "debian"
+  include_recipe "apt::default"
+
   apt_repository "puppetlabs" do
     uri "http://apt.puppetlabs.com/"
-    components [ node['lsb']['codename'], "main", "dependencies" ]
+    components [ node['lsb']['codename'], "main" ]
     key "4BD6EC30"
     keyserver "pgp.mit.edu"
+    action :add
+  end
+  apt_repository "puppetlabs-deps" do
+    uri "http://apt.puppetlabs.com/"
+    components [ node['lsb']['codename'], "dependencies" ]
+    key "4BD6EC30"
+    keyserver "pgp.mit.edu"
+    notifies :run, "execute[apt-get update]", :immediately
     action :add
   end
 when "rhel"
