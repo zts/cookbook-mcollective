@@ -1,1 +1,1 @@
-../../activemq/bats/mcollective.bats
+../../redis/bats/mcollective.bats

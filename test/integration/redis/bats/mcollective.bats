@@ -6,12 +6,12 @@
 
 @test "server responds to mcollective ping" {
       run sudo mco ping -I `hostname`
-      [ $status -eq 0 ]
+      [ $(echo "$output" | grep -c `hostname`) -eq 1 ]
 }
 
 @test "the kitchen user can run mco ping" {
       run sudo -u kitchen mco ping -I `hostname`
-      [ $status -eq 0 ]
+      [ $(echo "$output" | grep -c `hostname`) -eq 1 ]
 }
 
 @test "server has the mcollective chef agent installed " {
