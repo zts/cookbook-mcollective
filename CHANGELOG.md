@@ -1,3 +1,7 @@
+## v0.15.0
+
+ * Remove middleware credentials from connector plugin files.
+
 ## v0.14.3
 
  * Add mcollective.install\_chef\_agent? attribute to control whether
