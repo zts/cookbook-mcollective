@@ -50,17 +50,6 @@ default['mcollective']['direct_addressing'] = "y"
 # RabbitMQ details (used by rabbitmq connector)
 default['mcollective']['rabbitmq']['vhost'] = "/"
 
-# Redis details
-default['mcollective']['redis']['hostname'] = "localhost"
-default['mcollective']['redis']['port'] = "6379"
-default['mcollective']['redis']['db'] = "1"
-
-# STOMP server details (used by stomp, rabbitmq and activemq connectors)
-default['mcollective']['stomp']['hostname'] = "localhost"
-default['mcollective']['stomp']['port'] = "6163"
-default['mcollective']['stomp']['username'] = "mcollective"
-default['mcollective']['stomp']['password'] = "marionette"
-
 # MCollective Identity and collective membership
 default['mcollective']['identity']        = node['fqdn']
 default['mcollective']['main_collective'] = "mcollective"
