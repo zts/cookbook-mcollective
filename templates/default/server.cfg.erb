@@ -17,6 +17,11 @@ plugin.psk = <%= @config['psk'] %>
 <%- end %>
 
 connector = <%= @config['connector'] %>
+<%- if ['activemq','rabbitmq'].include?(@config['connector']) %>
+plugin.<%= @config['connector'] %>.pool.1.user = <%= @config['stomp']['username'] %>
+plugin.<%= @config['connector'] %>.pool.1.password = <%= @config['stomp']['password'] %>
+<%- end %>
+
 
 # Facts
 <% if @config['factsource'] == 'ohai' %>

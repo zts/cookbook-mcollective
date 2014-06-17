@@ -76,9 +76,16 @@ describe 'mcollective::common' do
     }
 
     it 'writes the activemq plugin config' do
-      words = %w{testhost 12345 testuser testpass}
+      words = %w{testhost 12345}
       words.each do |word|
         expect(chef_run).to render_file('/etc/mcollective/plugin.d/activemq.cfg')
+          .with_content(/#{word}/)
+      end
+    end
+    it 'does not put credentials in the activemq plugin config' do
+      words = %w{testuser testpass}
+      words.each do |word|
+        expect(chef_run).to_not render_file('/etc/mcollective/plugin.d/activemq.cfg')
           .with_content(/#{word}/)
       end
     end
@@ -96,9 +103,16 @@ describe 'mcollective::common' do
     }
 
     it 'writes the rabbitmq plugin config' do
-      words = %w{testhost 12345 testuser testpass}
+      words = %w{testhost 12345}
       words.each do |word|
         expect(chef_run).to render_file('/etc/mcollective/plugin.d/rabbitmq.cfg')
+          .with_content(/#{word}/)
+      end
+    end
+    it 'does not put credentials in the rabbitmq plugin config' do
+      words = %w{testuser testpass}
+      words.each do |word|
+        expect(chef_run).to_not render_file('/etc/mcollective/plugin.d/rabbitmq.cfg')
           .with_content(/#{word}/)
       end
     end

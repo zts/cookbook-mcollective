@@ -1,3 +1,14 @@
+## v0.15.0
+
+ * Remove middleware credentials from connector plugin files.
+ * Add middleware credentials to server configuration.
+ * Add middleware credentials to client configuration.
+ * Add `mcollective.stomp.client_username` and
+   `mcollective.stomp.client_password` attributes.  When specified,
+   these will be used for the client's connection to the middleware -
+   when unspecified, the client will use the same credentials as the
+   server.
+
 ## v0.14.3
 
  * Add mcollective.install\_chef\_agent? attribute to control whether
