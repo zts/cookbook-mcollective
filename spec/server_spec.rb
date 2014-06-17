@@ -72,6 +72,13 @@ describe 'mcollective::server' do
       expect(chef_run).to render_file('/etc/mcollective/server.cfg')
         .with_content(/connector = activemq/)
     end
+    it 'writes the activemq credentials in the server config' do
+      words = %w{testuser testpass}
+      words.each do |word|
+        expect(chef_run).to render_file('/etc/mcollective/server.cfg')
+          .with_content(/plugin.activemq.*#{word}/)
+      end
+    end
   end
 
   context 'configured to use rabbitmq' do
@@ -88,6 +95,13 @@ describe 'mcollective::server' do
     it 'sets the connector in server.cfg' do
       expect(chef_run).to render_file('/etc/mcollective/server.cfg')
         .with_content(/connector = rabbitmq/)
+    end
+    it 'writes the rabbitmq credentials in the server config' do
+      words = %w{testuser testpass}
+      words.each do |word|
+        expect(chef_run).to render_file('/etc/mcollective/server.cfg')
+          .with_content(/plugin.rabbitmq.*#{word}/)
+      end
     end
   end
 
