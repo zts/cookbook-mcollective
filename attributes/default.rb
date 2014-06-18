@@ -39,6 +39,8 @@ default['mcollective']['securityprovider'] = "psk"
 
 # The key for the psk security provider
 default['mcollective']['psk'] = "unset"
+# PSK callertype can be: uid, username, gid, group, or identity
+default['mcollective']['psk_callertype'] = "uid"
 
 # Connector plugin - activemq/rabbitmq/stomp/redis
 default['mcollective']['connector']         = "activemq"

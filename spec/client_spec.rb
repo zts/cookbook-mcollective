@@ -11,6 +11,11 @@ describe 'mcollective::client' do
     expect(chef_run).to render_file('/etc/mcollective/client.cfg')
   end
 
+  it 'sets the default PSK callertype' do
+    expect(chef_run).to render_file('/etc/mcollective/client.cfg')
+      .with_content(/plugin.psk.callertype = uid/)
+  end
+
   it 'sets the correct permissions on client.cfg' do
     expect(chef_run).to create_template('/etc/mcollective/client.cfg')
       .with(group: 'mcollective', mode: '0640')

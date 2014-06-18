@@ -17,6 +17,11 @@ describe 'mcollective::server' do
     expect(resource).to notify('service[mcollective]').to(:restart)
   end
 
+  it 'sets the default PSK callertype' do
+    expect(chef_run).to render_file('/etc/mcollective/server.cfg')
+      .with_content(/plugin.psk.callertype = uid/)
+  end
+
   it 'registers the chef handler' do
     expect(chef_run).to enable_chef_handler('MCollective::ClassList')
   end

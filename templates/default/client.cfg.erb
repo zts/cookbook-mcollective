@@ -13,6 +13,7 @@ loglevel = info
 securityprovider = <%= @config['securityprovider'] %>
 <%- if @config['securityprovider'] == "psk" %>
 plugin.psk = <%= @config['psk'] %>
+plugin.psk.callertype = <%= @config['psk_callertype'] %>
 <%- end %>
 
 connector = <%= @config['connector'] %>

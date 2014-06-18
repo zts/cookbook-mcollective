@@ -8,6 +8,8 @@
    these will be used for the client's connection to the middleware -
    when unspecified, the client will use the same credentials as the
    server.
+ * Add `mcollective.psk_callertype` attribute to set
+   `plugin.psk.callertype` in the mcollective configuration.
 
 ## v0.14.3
 
