@@ -6,14 +6,6 @@ module MCollective
     # credits the original Puppet agent by R.I. Pienaar.
     #
     class Chef<RPC::Agent
-      metadata      :name => "Chef Client Agent",
-      :description        => "Manage the chef-client daemon",
-      :author             => "Zachary Stevens <zts@cryptocracy.com>",
-      :license            => "Apache License 2.0",
-      :version            => "1.0",
-      :url                => "http://github.com/zts/chef-cookbook-mcollective",
-      :timeout            => 60
-
       def startup_hook
         @initscript = @config.pluginconf["chef.client-initscript"] || "service chef-client"
         @pidfile = @config.pluginconf["chef.client-pidfile"] || "/var/run/chef/client.pid"

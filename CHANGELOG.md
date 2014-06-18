@@ -10,6 +10,7 @@
    server.
  * Add `mcollective.psk_callertype` attribute to set
    `plugin.psk.callertype` in the mcollective configuration.
+ * Remove redundant DDL from Chef agent (thanks, @jorhett)
 
 ## v0.14.3
 
