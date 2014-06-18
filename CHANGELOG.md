@@ -11,6 +11,7 @@
  * Add `mcollective.psk_callertype` attribute to set
    `plugin.psk.callertype` in the mcollective configuration.
  * Remove redundant DDL from Chef agent (thanks, @jorhett)
+ * Add `mco chef` application (contributed by @jorhett - thankyou!)
 
 ## v0.14.3
 
