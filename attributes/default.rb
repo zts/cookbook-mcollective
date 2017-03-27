@@ -101,7 +101,7 @@ default['mcollective']['fact_whitelist'] = [
                                            ]
 
 # MCollective plugin location (created by the packages)
-case platform_family
+case node['platform_family']
 when "debian"
   default['mcollective']['libdir'] = "/usr/share/mcollective/plugins"
 when "rhel","fedora"
