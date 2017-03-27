@@ -24,9 +24,9 @@ describe 'mcollective::client' do
   context 'configured to use activemq' do
     let(:chef_run) {
       chef_run = ChefSpec::SoloRunner.new(:platform => 'redhat', :version => '6.3')
-      chef_run.node.set['mcollective']['connector'] = 'activemq'
-      chef_run.node.set['mcollective']['stomp']['username'] = 'testuser'
-      chef_run.node.set['mcollective']['stomp']['password'] = 'testpass'
+      chef_run.node.override['mcollective']['connector'] = 'activemq'
+      chef_run.node.override['mcollective']['stomp']['username'] = 'testuser'
+      chef_run.node.override['mcollective']['stomp']['password'] = 'testpass'
       chef_run.converge(described_recipe)
     }
 
@@ -45,11 +45,11 @@ describe 'mcollective::client' do
     context 'with client middleware credentials' do
       let(:chef_run) {
         chef_run = ChefSpec::SoloRunner.new(:platform => 'redhat', :version => '6.3')
-        chef_run.node.set['mcollective']['connector'] = 'activemq'
-        chef_run.node.set['mcollective']['stomp']['username'] = 'testuser'
-        chef_run.node.set['mcollective']['stomp']['password'] = 'testpass'
-        chef_run.node.set['mcollective']['stomp']['client_username'] = 'clientuser'
-        chef_run.node.set['mcollective']['stomp']['client_password'] = 'clientpass'
+        chef_run.node.override['mcollective']['connector'] = 'activemq'
+        chef_run.node.override['mcollective']['stomp']['username'] = 'testuser'
+        chef_run.node.override['mcollective']['stomp']['password'] = 'testpass'
+        chef_run.node.override['mcollective']['stomp']['client_username'] = 'clientuser'
+        chef_run.node.override['mcollective']['stomp']['client_password'] = 'clientpass'
         chef_run.converge(described_recipe)
       }
 
@@ -66,9 +66,9 @@ describe 'mcollective::client' do
   context 'configured to use rabbitmq' do
     let(:chef_run) {
       chef_run = ChefSpec::SoloRunner.new(:platform => 'redhat', :version => '6.3')
-      chef_run.node.set['mcollective']['connector'] = 'rabbitmq'
-      chef_run.node.set['mcollective']['stomp']['username'] = 'testuser'
-      chef_run.node.set['mcollective']['stomp']['password'] = 'testpass'
+      chef_run.node.override['mcollective']['connector'] = 'rabbitmq'
+      chef_run.node.override['mcollective']['stomp']['username'] = 'testuser'
+      chef_run.node.override['mcollective']['stomp']['password'] = 'testpass'
       chef_run.converge(described_recipe)
     }
 
@@ -87,11 +87,11 @@ describe 'mcollective::client' do
     context 'with client middleware credentials' do
       let(:chef_run) {
         chef_run = ChefSpec::SoloRunner.new(:platform => 'redhat', :version => '6.3')
-        chef_run.node.set['mcollective']['connector'] = 'rabbitmq'
-        chef_run.node.set['mcollective']['stomp']['username'] = 'testuser'
-        chef_run.node.set['mcollective']['stomp']['password'] = 'testpass'
-        chef_run.node.set['mcollective']['stomp']['client_username'] = 'clientuser'
-        chef_run.node.set['mcollective']['stomp']['client_password'] = 'clientpass'
+        chef_run.node.override['mcollective']['connector'] = 'rabbitmq'
+        chef_run.node.override['mcollective']['stomp']['username'] = 'testuser'
+        chef_run.node.override['mcollective']['stomp']['password'] = 'testpass'
+        chef_run.node.override['mcollective']['stomp']['client_username'] = 'clientuser'
+        chef_run.node.override['mcollective']['stomp']['client_password'] = 'clientpass'
         chef_run.converge(described_recipe)
       }
 
@@ -108,7 +108,7 @@ describe 'mcollective::client' do
   context 'configured to use redis' do
     let(:chef_run) {
       chef_run = ChefSpec::SoloRunner.new(:platform => 'redhat', :version => '6.3')
-      chef_run.node.set['mcollective']['connector'] = 'redis'
+      chef_run.node.override['mcollective']['connector'] = 'redis'
       chef_run.converge(described_recipe)
     }
 

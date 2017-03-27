@@ -37,7 +37,7 @@ describe 'mcollective::server' do
   context 'when configured not to install the chef handler' do
     let(:chef_run) {
       chef_run = ChefSpec::SoloRunner.new(:platform => 'redhat', :version => '6.3')
-      chef_run.node.set['mcollective']['install_chef_handler?'] = false
+      chef_run.node.override['mcollective']['install_chef_handler?'] = false
       chef_run.converge(described_recipe)
     }
 
@@ -49,7 +49,7 @@ describe 'mcollective::server' do
   context 'when configured to use the opscodeohai fact source' do
     let(:chef_run) {
       chef_run = ChefSpec::SoloRunner.new(:platform => 'redhat', :version => '6.3')
-      chef_run.node.set['mcollective']['factsource'] = 'ohai'
+      chef_run.node.override['mcollective']['factsource'] = 'ohai'
       chef_run.converge(described_recipe)
     }
 
@@ -65,11 +65,11 @@ describe 'mcollective::server' do
   context 'configured to use activemq' do
     let(:chef_run) {
       chef_run = ChefSpec::SoloRunner.new(:platform => 'redhat', :version => '6.3')
-      chef_run.node.set['mcollective']['connector'] = 'activemq'
-      chef_run.node.set['mcollective']['stomp']['hostname'] = 'testhost'
-      chef_run.node.set['mcollective']['stomp']['port'] = '12345'
-      chef_run.node.set['mcollective']['stomp']['username'] = 'testuser'
-      chef_run.node.set['mcollective']['stomp']['password'] = 'testpass'
+      chef_run.node.override['mcollective']['connector'] = 'activemq'
+      chef_run.node.override['mcollective']['stomp']['hostname'] = 'testhost'
+      chef_run.node.override['mcollective']['stomp']['port'] = '12345'
+      chef_run.node.override['mcollective']['stomp']['username'] = 'testuser'
+      chef_run.node.override['mcollective']['stomp']['password'] = 'testpass'
       chef_run.converge(described_recipe)
     }
 
@@ -89,11 +89,11 @@ describe 'mcollective::server' do
   context 'configured to use rabbitmq' do
     let(:chef_run) {
       chef_run = ChefSpec::SoloRunner.new(:platform => 'redhat', :version => '6.3')
-      chef_run.node.set['mcollective']['connector'] = 'rabbitmq'
-      chef_run.node.set['mcollective']['stomp']['hostname'] = 'testhost'
-      chef_run.node.set['mcollective']['stomp']['port'] = '12345'
-      chef_run.node.set['mcollective']['stomp']['username'] = 'testuser'
-      chef_run.node.set['mcollective']['stomp']['password'] = 'testpass'
+      chef_run.node.override['mcollective']['connector'] = 'rabbitmq'
+      chef_run.node.override['mcollective']['stomp']['hostname'] = 'testhost'
+      chef_run.node.override['mcollective']['stomp']['port'] = '12345'
+      chef_run.node.override['mcollective']['stomp']['username'] = 'testuser'
+      chef_run.node.override['mcollective']['stomp']['password'] = 'testpass'
       chef_run.converge(described_recipe)
     }
 
@@ -113,11 +113,11 @@ describe 'mcollective::server' do
   context 'configured to use redis' do
     let(:chef_run) {
       chef_run = ChefSpec::SoloRunner.new(:platform => 'redhat', :version => '6.3')
-      chef_run.node.set['mcollective']['connector'] = 'redis'
-      chef_run.node.set['mcollective']['redis']['hostname'] = 'testhost'
-      chef_run.node.set['mcollective']['redis']['port'] = '12345'
-      chef_run.node.set['mcollective']['redis']['db'] = '1'
-      chef_run.node.set['mcollective']['site_plugins'] = "/etc/mcollective/site_plugins/mcollective"
+      chef_run.node.override['mcollective']['connector'] = 'redis'
+      chef_run.node.override['mcollective']['redis']['hostname'] = 'testhost'
+      chef_run.node.override['mcollective']['redis']['port'] = '12345'
+      chef_run.node.override['mcollective']['redis']['db'] = '1'
+      chef_run.node.override['mcollective']['site_plugins'] = "/etc/mcollective/site_plugins/mcollective"
       chef_run.converge(described_recipe)
     }
 

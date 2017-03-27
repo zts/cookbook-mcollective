@@ -27,7 +27,7 @@ describe 'mcollective::common' do
   context 'when the mcollective users attribute is populated' do
     let(:chef_run) {
       chef_run = ChefSpec::SoloRunner.new(:platform => 'redhat', :version => '6.3')
-      chef_run.node.set['mcollective']['users'] = ['user1']
+      chef_run.node.override['mcollective']['users'] = ['user1']
       chef_run.converge(described_recipe)
     }
 
@@ -39,7 +39,7 @@ describe 'mcollective::common' do
   context 'when the mcollective group attribute is overridden' do
     let(:chef_run) {
       chef_run = ChefSpec::SoloRunner.new(:platform => 'redhat', :version => '6.3')
-      chef_run.node.set['mcollective']['group'] = 'testgroup'
+      chef_run.node.override['mcollective']['group'] = 'testgroup'
       chef_run.converge(described_recipe)
     }
 
@@ -55,7 +55,7 @@ describe 'mcollective::common' do
   context 'when configured not to install the chef agent' do
     let(:chef_run) {
       chef_run = ChefSpec::SoloRunner.new(:platform => 'redhat', :version => '6.3')
-      chef_run.node.set['mcollective']['install_chef_agent?'] = false
+      chef_run.node.override['mcollective']['install_chef_agent?'] = false
       chef_run.converge(described_recipe)
     }
 
@@ -67,11 +67,11 @@ describe 'mcollective::common' do
   context 'when configured to use activemq' do
     let(:chef_run) {
       chef_run = ChefSpec::SoloRunner.new(:platform => 'redhat', :version => '6.3')
-      chef_run.node.set['mcollective']['connector'] = 'activemq'
-      chef_run.node.set['mcollective']['stomp']['hostname'] = 'testhost'
-      chef_run.node.set['mcollective']['stomp']['port'] = '12345'
-      chef_run.node.set['mcollective']['stomp']['username'] = 'testuser'
-      chef_run.node.set['mcollective']['stomp']['password'] = 'testpass'
+      chef_run.node.override['mcollective']['connector'] = 'activemq'
+      chef_run.node.override['mcollective']['stomp']['hostname'] = 'testhost'
+      chef_run.node.override['mcollective']['stomp']['port'] = '12345'
+      chef_run.node.override['mcollective']['stomp']['username'] = 'testuser'
+      chef_run.node.override['mcollective']['stomp']['password'] = 'testpass'
       chef_run.converge(described_recipe)
     }
 
@@ -94,11 +94,11 @@ describe 'mcollective::common' do
   context 'when configured to use rabbitmq' do
     let(:chef_run) {
       chef_run = ChefSpec::SoloRunner.new(:platform => 'redhat', :version => '6.3')
-      chef_run.node.set['mcollective']['connector'] = 'rabbitmq'
-      chef_run.node.set['mcollective']['stomp']['hostname'] = 'testhost'
-      chef_run.node.set['mcollective']['stomp']['port'] = '12345'
-      chef_run.node.set['mcollective']['stomp']['username'] = 'testuser'
-      chef_run.node.set['mcollective']['stomp']['password'] = 'testpass'
+      chef_run.node.override['mcollective']['connector'] = 'rabbitmq'
+      chef_run.node.override['mcollective']['stomp']['hostname'] = 'testhost'
+      chef_run.node.override['mcollective']['stomp']['port'] = '12345'
+      chef_run.node.override['mcollective']['stomp']['username'] = 'testuser'
+      chef_run.node.override['mcollective']['stomp']['password'] = 'testpass'
       chef_run.converge(described_recipe)
     }
 
@@ -121,11 +121,11 @@ describe 'mcollective::common' do
   context 'configured to use redis' do
     let(:chef_run) {
       chef_run = ChefSpec::SoloRunner.new(:platform => 'redhat', :version => '6.3')
-      chef_run.node.set['mcollective']['connector'] = 'redis'
-      chef_run.node.set['mcollective']['redis']['hostname'] = 'testhost'
-      chef_run.node.set['mcollective']['redis']['port'] = '12345'
-      chef_run.node.set['mcollective']['redis']['db'] = '1'
-      chef_run.node.set['mcollective']['site_plugins'] = "/etc/mcollective/site_plugins/mcollective"
+      chef_run.node.override['mcollective']['connector'] = 'redis'
+      chef_run.node.override['mcollective']['redis']['hostname'] = 'testhost'
+      chef_run.node.override['mcollective']['redis']['port'] = '12345'
+      chef_run.node.override['mcollective']['redis']['db'] = '1'
+      chef_run.node.override['mcollective']['site_plugins'] = "/etc/mcollective/site_plugins/mcollective"
       chef_run.converge(described_recipe)
     }
 
