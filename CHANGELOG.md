@@ -1,3 +1,7 @@
+## v0.15.1
+
+Fix deprecation warnings.
+
 ## v0.15.0
 
  * Remove middleware credentials from connector plugin files.
